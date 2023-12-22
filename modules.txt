@@ -1,0 +1,47 @@
+1. USER AUTHENTICATION MODULE (in-charge: CHIEW)
+Description: Handles user logins, registrations and password recovery.
+User Types: Customer, Admin
+CRUD Operations: Create
+Priority: High
+
+2. CATALOGUE MODULE (in-charge: CHRIS)
+Description: Displays and updates the list of products with details.
+User Types: Customer, Admin
+CRUD Operations: Create (admin), Read (customer, admin), Update (admin), Delete (admin)
+Priority: High
+
+3. PAYMENT AND TRANSACTION MANAGEMENT MODULE (in-charge: BRANDON)
+Description: Manages the payment process and finalizes transactions.
+User Types: Customer
+CRUD Operations: Create
+Priority: High
+
+4. INVENTORY TRACKING MODULE (in-charge: DANNY)
+Description: Keeps track of stock levels and updates product availability.
+User Types: Admin
+CRUD Operations: Read, Write
+Priority: High
+
+5. BILLING AND INVOICE MANAGEMENT MODULE (in-charge: BRANDON)
+Description: Creates and sends invoices to customers post-purchase.
+User Types: Admin
+CRUD Operations: Create
+Priority: Medium
+
+6. USER PROFILE AND ACCOUNT SETTINGS MODULE (in-charge: DANNY)
+Description: Allows users to edit their personal information and settings.
+User Types: Customer, Admin
+CRUD Operations: Create, Read, Update, Delete (customer, admin)
+Priority: Medium
+
+7. PRODUCT SEARCH AND FILTERING MODULE (in-charge: CHIEW)
+Description: Filter based on name, or type, or price, etc.
+User Types: Customer
+CRUD Operations: Read
+Priority: Low
+
+8. SHOPPING CART AND CHECKOUT MODULE (in-charge: CHRIS)
+Description: Facilitates the completion of purchases and order processing.
+User Types: Customer
+CRUD Operations: Create, Read, Update, Delete
+Priority: Medium
