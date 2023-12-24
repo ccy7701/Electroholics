@@ -76,7 +76,7 @@
 
 <body>
     <nav class="topnav" id="myTopnav">
-        <a href="#" class="tab"><img src="images/electroholicsLogo.png"><b> ELECTROHOLICS </b></a>
+        <a href="index.php" class="tab"><img src="images/websiteElements/electroholicsLogo.png"><b> ELECTROHOLICS </b></a>
         <a href="index.php" class="active"><b>HOME</b></a>
         <a href="products.php" class="tab"><b>PRODUCTS</b></a>
         <a href="myaccount.php" class="tab"><b>MY ACCOUNT</b></a>
@@ -86,9 +86,9 @@
 
     <main>
         <div class="blurredBackgroundContainer">
-            <img src="images/indexBackground1.png" alt="pcBuild" style="width: 100%; height: 500px; object-fit: cover;">
+            <img src="images/websiteElements/indexBackground1.png" alt="pcBuild" style="width: 100%; height: 500px; object-fit: cover;">
             <div class="textCenterAligned">
-                <img src="images/electroholicsLogo.png" alt="Logo" style="width: 40%; height: 40%;">
+                <img src="images/websiteElements/electroholicsLogo.png" alt="Logo" style="width: 40%; height: 40%;">
                 <b><i>
                 <p>Welcome to Electroholics, where technology meets passion!</p>
                 <p>At Electroholics, We're more than just a PC store, we're a community of tech
@@ -105,29 +105,29 @@
                 </tr>
                 <tr>
                     <td>
-                        <img class="tableImage" src="images/placeholder.png"><br>
+                        <img class="tableImage" src="images/websiteElements/placeholder.png"><br>
                         Product Name
                     </td>
                     <td>
-                        <img class="tableImage" src="images/placeholder.png"><br>
+                        <img class="tableImage" src="images/websiteElements/placeholder.png"><br>
                         Product Name
                     </td>
                     <td>
-                        <img class="tableImage" src="images/placeholder.png"><br>
+                        <img class="tableImage" src="images/websiteElements/placeholder.png"><br>
                         Product Name
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <img class="tableImage" src="images/placeholder.png"><br>
+                        <img class="tableImage" src="images/websiteElements/placeholder.png"><br>
                         Product Name
                     </td>
                     <td>
-                        <img class="tableImage" src="images/placeholder.png"><br>
+                        <img class="tableImage" src="images/websiteElements/placeholder.png"><br>
                         Product Name
                     </td>
                     <td>
-                        <img class="tableImage" src="images/placeholder.png"><br>
+                        <img class="tableImage" src="images/websiteElements/placeholder.png"><br>
                         Product Name
                     </td>
                 </tr>
@@ -139,29 +139,29 @@
                 </tr>
                 <tr>
                     <td>
-                        <img class="tableImage" src="images/placeholder.png"><br>
+                        <img class="tableImage" src="images/websiteElements/placeholder.png"><br>
                         Product Name
                     </td>
                     <td>
-                        <img class="tableImage" src="images/placeholder.png"><br>
+                        <img class="tableImage" src="images/websiteElements/placeholder.png"><br>
                         Product Name
                     </td>
                     <td>
-                        <img class="tableImage" src="images/placeholder.png"><br>
+                        <img class="tableImage" src="images/websiteElements/placeholder.png"><br>
                         Product Name
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <img class="tableImage" src="images/placeholder.png"><br>
+                        <img class="tableImage" src="images/websiteElements/placeholder.png"><br>
                         Product Name
                     </td>
                     <td>
-                        <img class="tableImage" src="images/placeholder.png"><br>
+                        <img class="tableImage" src="images/websiteElements/placeholder.png"><br>
                         Product Name
                     </td>
                     <td>
-                        <img class="tableImage" src="images/placeholder.png"><br>
+                        <img class="tableImage" src="images/websiteElements/placeholder.png"><br>
                         Product Name
                     </td>
                 </tr>
