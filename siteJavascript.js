@@ -40,3 +40,84 @@ function setLoginForm(loginType) {
         document.getElementById('loginAsAdminButton').classList.remove('active');
     }
 }
+
+// function use: to validate if both password fields at registration page are the same value
+function checkMatchingPassword() {
+    // get the values at both password fields
+    let password = document.getElementById("regPassword").value;
+    let reenterPassword = document.getElementById("regReenterPassword").value;
+
+    var passFlag = 0;
+
+    if (password == reenterPassword) {
+        passFlag = 1;
+        document.getElementById("passwordMatch").style.color = "green";
+        document.getElementById("passwordMatch").innerHTML = "Passwords match";
+    }
+    else {
+        passFlag = 0;
+        document.getElementById("passwordMatch").style.color = "red";
+        document.getElementById("passwordMatch").innerHTML = "Passwords do not match";
+    }
+
+    return passFlag;
+}
+
+// function use: to validate if the registration details fit required criteria
+// and do so dynamically as the user types in the password
+function checkPasswordCriteria() {
+    // get the value at regPassword
+    let password = document.getElementById("regPassword").value;
+    
+    // criteria flags
+    var lengthFlag = numberFlag = capitalFlag = 0;
+    var passFlag = 0;
+
+    // check: password length
+    if (password.length >= 8) {
+        lengthFlag = 1;
+        document.getElementById("passwordLength").style.color = "green";
+    }
+    else {
+        lengthFlag = 0;
+        document.getElementById("passwordLength").style.color = "red";
+    }
+
+    // check: password contains at least one number
+    if (/\d/.test(password)) {
+        numberFlag = 1;
+        document.getElementById("passwordNumber").style.color = "green";
+    }
+    else {
+        lengthFlag = 0;
+        document.getElementById("passwordNumber").style.color = "red";
+    }
+
+    // check: password contains at least one capital letter
+    if (/[A-Z]/.test(password)) {
+        capitalFlag = 1;
+        document.getElementById("passwordCapital").style.color = "green";
+    }
+    else {
+        capitalFlag = 0;
+        document.getElementById("passwordCapital").style.color = "red";
+    }
+
+    if (lengthFlag && numberFlag && capitalFlag) {
+        passFlag = 1;
+    }
+
+    return passFlag;
+}
+
+// function use: to validate all registration details before submission
+function validateDetails(event) {
+    event.preventDefault();     // prevent the form from submitting by default
+
+    if (checkPasswordCriteria() && checkMatchingPassword()) {
+        document.getElementById("registrationForm").submit();
+    }
+    else {
+        alert("An error was encountered when submitting your registration information. Please try again.");
+    }
+}

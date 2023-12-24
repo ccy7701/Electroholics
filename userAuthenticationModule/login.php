@@ -141,9 +141,9 @@
                     <input class="loginFormField" name="loginPassword" type="password" placeholder="Customer password" required><br>
                 
                     <input class="button" name="loginSubmitForm" type="submit" value="LOG IN">
-                    <p>Don't have an account yet? <a href="registrationCustomer.php">Register here.</a></p>
+                    <p>Don't have an account yet? <a href="registration.php" style="color: blue;">Register here.</a></p>
                 </form>
-                <form class="loginForm" id="adminLoginForm" action="">
+                <form class="loginForm" id="adminLoginForm" action="login_action.php" method="POST">
                     <input name="loginType" type="hidden" value="1">
 
                     <label for="loginUsernameOrEmail">Username or email address *</label>
@@ -153,7 +153,7 @@
                     <input class="loginFormField" name="loginPassword" type="password" placeholder="Admin password" required><br>
                 
                     <input class="button" name="loginSubmitForm" type="submit" value="LOG IN">
-                    <p>Don't have an account yet? <a href="registration.php">Register here.</a></p>
+                    <p>Don't have an account yet? <a href="registration.php" style="color: blue;">Register here.</a></p>
                 </form>
             </div>
         </div>

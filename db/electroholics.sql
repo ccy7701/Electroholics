@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS account (
     accountID int PRIMARY KEY NOT NULL AUTO_INCREMENT,
     accountEmail varchar(255) NOT NULL UNIQUE,
     accountPassword varchar(255) NOT NULL,
+    username varchar(255) NOT NULL UNIQUE,
     accountRegistrationDate date,
     accountRole int NOT NULL DEFAULT 2 COMMENT '1 - Admin, 2 - Customer'
 ) ENGINE=INNODB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -19,7 +20,6 @@ CREATE TABLE IF NOT EXISTS user_profile (
     userID int PRIMARY KEY AUTO_INCREMENT,
     accountID int,
     userAddress varchar(255),
-    username varchar(255),
     userContact varchar(255),
     userDOB datetime,
     FOREIGN KEY (accountID) REFERENCES account(accountID) ON DELETE CASCADE
