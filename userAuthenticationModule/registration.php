@@ -81,11 +81,11 @@
     <main>
         <h2 style="text-align: center;">Registration</h2>
         <div class="registrationFormContainer">
-            <form class="registrationForm" id="registrationForm" onsubmit="validateDetails(event);" action="registration_action.php" method="POST">
+            <form class="registrationForm" id="registrationForm" onsubmit="validateDetails(event);" action="registrationAction.php" method="POST">
                 <br>
-                <label for="regAccountType">I am registering a new account as a</label><br>
-                <input class="regFormRadio" name="regAccountType" type="radio" value="2" checked required><label for="customer">Customer</label>
-                <input class="regFormRadio" name="regAccountType" type="radio" value="1" required><label for="Admin">Admin</label>
+                <label for="regAccountRole">I am registering a new account as a</label><br>
+                <input class="regFormRadio" name="regAccountRole" type="radio" value="2" checked required><label for="customer">Customer</label>
+                <input class="regFormRadio" name="regAccountRole" type="radio" value="1" required><label for="Admin">Admin</label>
                 <br><br>
 
                 <label for="regUsername">Username *</label>

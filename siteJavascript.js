@@ -121,3 +121,15 @@ function validateDetails(event) {
         alert("An error was encountered when submitting your registration information. Please try again.");
     }
 }
+
+// function use: to redirect to a different link on click
+function redirect(target) {
+    window.location.href = target;
+}
+
+// function use: to create a Javascript popup to be used inside any block of PHP code
+function popup(message, target) {
+    let text = message;
+    alert(text);
+    redirect(target);
+}

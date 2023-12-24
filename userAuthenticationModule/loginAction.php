@@ -41,11 +41,11 @@
                 header("location:../index.php");
             }
             else {
-                echo "Login error: Username/email and password do not match. Please try again.";
+                echo "<script>popup(\"Login error: Username/email and password do not match. Please try again.\", \"login.php\");</script>";
             }
         }
         else {
-            echo "Login error: No user with this username/email exists. Please try again.";
+            echo "<script>popup(\"Login error: No user with this username/email exists. Please try again.\", \"login.php\");</script>";
         }
         mysqli_close($conn);
     ?>

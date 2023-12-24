@@ -1,7 +1,7 @@
 -- Table structure for account
 
-INSERT INTO tableName (attributes)
-VALUES (attributeValues);
+-- INSERT INTO tableName (attributes)
+-- VALUES (attributeValues);
 
 DROP TABLE IF EXISTS account;
 CREATE TABLE IF NOT EXISTS account (
@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS account (
     accountEmail varchar(255) NOT NULL UNIQUE,
     accountPassword varchar(255) NOT NULL,
     username varchar(255) NOT NULL UNIQUE,
-    accountRegistrationDate date,
+    accountRegistrationDate date NOT NULL DEFAULT CURRENT_DATE,
     accountRole int NOT NULL DEFAULT 2 COMMENT '1 - Admin, 2 - Customer'
 ) ENGINE=INNODB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
