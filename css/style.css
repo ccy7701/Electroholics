@@ -46,8 +46,8 @@ footer {
     border-bottom: 5px solid #272727;
 }
 
-/* for the login tab only */
-.topnav a.login {
+/* for the tabs aligned to the right only */
+.topnav a.tabRight {
     float: right;
     display: block;
     color: #FFFFFF;
@@ -89,8 +89,8 @@ footer {
     .topnav a:not(:first-child) {
         display: none;
     }
-    .topnav a.login {
-        float: left;
+    .topnav a.tabRight {
+        float: right;
     }
     .topnav a.icon {
         float: right;

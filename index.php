@@ -20,14 +20,14 @@
             position: relative;
             text-align: center;
             color: #FFFFFF;
-            height: 500px;
+            height: 600px;
         }
         .textCenterAligned {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            padding: 50px;
+            z-index: 0;
         }
         .textBody {
             background-color: #444444;
@@ -79,15 +79,38 @@
         <a href="index.php" class="tab"><img src="images/websiteElements/electroholicsLogo.png"><b> ELECTROHOLICS </b></a>
         <a href="index.php" class="active"><b>HOME</b></a>
         <a href="products.php" class="tab"><b>PRODUCTS</b></a>
-        <a href="myaccount.php" class="tab"><b>MY ACCOUNT</b></a>
-        <a href="userAuthenticationModule/login.php" class="login"><b>LOGIN</b></a>
+        <?php
+            if (isset($_SESSION["accountID"])) {    // if a user is logged in and a session is active
+                $accountID = $_SESSION["accountID"];
+                $accountEmail = $_SESSION["accountEmail"];
+                $username = $_SESSION["username"];
+                $accountRole = $_SESSION["accountRole"];
+
+                if ($accountRole == 1) {    // if the logged in user is an admin, show tabs available only to admin side
+                    echo "<a href='inventoryTrackingModule/#' class='tab'><b>STORE INVENTORY</b></a>";
+                    echo "<a href='userProfileAndAccountModule/myAccount.php' class='tab'><b><i class='fa fa-user-circle-o'></i> $username</b></a>";
+                    echo "<a href='userAuthenticationModule/logout.php' class='tabRight'><b>LOGOUT</b></a>";
+                    // add more in the future as and when required
+                }
+                else if ($accountRole == 2) {   // otherwise, just show tabs available to the customer
+                    echo "<a href='shoppingCartModule/#' class='tab'><i class='fa fa-shopping-cart'><b></i> My Cart (# items)</b></a>";
+                    echo "<a href='userProfileAndAccountModule/myAccount.php' class='tab'><b><i class='fa fa-user-circle-o'></i> $username</b></a>";
+                    echo "<a href='userAuthenticationModule/logout.php' class='tabRight'><b>LOGOUT</b></a>";
+                }
+            }
+            else {  // if a session is not active
+                echo "<a href='userAuthenticationModule/login.php' class='tabRight'><b>LOGIN</b></a>";
+            }
+
+        ?>
         <a href="javascript:void(0);" class="icon" onClick="adjustTopnav();"><i class="fa fa-bars"></i></a>
     </nav>
 
     <main>
         <div class="blurredBackgroundContainer">
-            <img src="images/websiteElements/indexBackground1.png" alt="pcBuild" style="width: 100%; height: 500px; object-fit: cover;">
+            <img src="images/websiteElements/indexBackground1.png" alt="pcBuild" style="width: 100%; height: 600px; object-fit: cover;">
             <div class="textCenterAligned">
+                <br>
                 <img src="images/websiteElements/electroholicsLogo.png" alt="Logo" style="width: 40%; height: 40%;">
                 <b><i>
                 <p>Welcome to Electroholics, where technology meets passion!</p>
@@ -95,6 +118,7 @@
                 enthusiasts dedicated to fueling your love for all things electronic.</p>
                 <p>Shop with us now!</p>
                 </i></b>
+                <br>
             </div>
         </div>
         <div class="textBody">

@@ -56,7 +56,6 @@
             height: 40px;
             width: 100%;
             display: block;
-            padding-left: 10px;
             margin-bottom: 10px;
             font-size: 18px;
             margin-top: 5px;
@@ -113,8 +112,7 @@
         <a href="../index.php" class="tab"><img src="../images/websiteElements/electroholicsLogo.png"><b> ELECTROHOLICS </b></a>
         <a href="../index.php" class="tab"><b>HOME</b></a>
         <a href="products.php" class="tab"><b>PRODUCTS</b></a>
-        <a href="myaccount.php" class="tab"><b>MY ACCOUNT</b></a>
-        <a href="login.php" class="login" style="border-bottom: 5px solid #FFFFFF;"><b>LOGIN</b></a>
+        <a href="login.php" class="tabRight" style="border-bottom: 5px solid #FFFFFF;"><b>LOGIN</b></a>
         <a href="javascript:void(0);" class="icon" onClick="adjustTopnav();"><i class="fa fa-bars"></i></a>
     </nav>
 
@@ -131,7 +129,7 @@
             </div>
             <div class="col-right">
                 <br>
-                <form class="loginForm" id="customerLoginForm" action="login_action.php" method="POST">
+                <form class="loginForm" id="customerLoginForm" action="loginAction.php" method="POST">
                     <input name="loginType" type="hidden" value="2">
 
                     <label for="loginUsernameOrEmail">Username or email address *</label>
@@ -143,7 +141,7 @@
                     <input class="button" name="loginSubmitForm" type="submit" value="LOG IN">
                     <p>Don't have an account yet? <a href="registration.php" style="color: blue;">Register here.</a></p>
                 </form>
-                <form class="loginForm" id="adminLoginForm" action="login_action.php" method="POST">
+                <form class="loginForm" id="adminLoginForm" action="loginAction.php" method="POST">
                     <input name="loginType" type="hidden" value="1">
 
                     <label for="loginUsernameOrEmail">Username or email address *</label>

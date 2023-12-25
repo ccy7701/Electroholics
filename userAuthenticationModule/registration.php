@@ -73,8 +73,7 @@
         <a href="../index.php" class="tab"><img src="../images/websiteElements/electroholicsLogo.png"><b> ELECTROHOLICS </b></a>
         <a href="../index.php" class="tab"><b>HOME</b></a>
         <a href="products.php" class="tab"><b>PRODUCTS</b></a>
-        <a href="myaccount.php" class="tab"><b>MY ACCOUNT</b></a>
-        <a href="login.php" class="login" style="border-bottom: 5px solid #FFFFFF;"><b>LOGIN</b></a>
+        <a href="login.php" class="tabRight" style="border-bottom: 5px solid #FFFFFF;"><b>LOGIN</b></a>
         <a href="javascript:void(0);" class="icon" onClick="adjustTopnav();"><i class="fa fa-bars"></i></a>
     </nav>
 

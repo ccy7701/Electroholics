@@ -25,7 +25,7 @@
         $loginUsernameOrEmail = $_POST["loginUsernameOrEmail"];
         $loginPassword = $_POST["loginPassword"];
 
-        $loginQuery = "SELECT * FROM account WHERE accountEmail=".$loginUsernameOrEmail." OR username=".$loginUsernameOrEmail." LIMIT 1;";
+        $loginQuery = "SELECT * FROM account WHERE (accountEmail='$loginUsernameOrEmail' OR username='$loginUsernameOrEmail') AND accountRole = '$loginType' LIMIT 1;";
         $result = mysqli_query($conn, $loginQuery);
 
         if (mysqli_num_rows($result) == 1) {
@@ -35,8 +35,10 @@
             if (password_verify($_POST["loginPassword"], $row["accountPassword"])) {
                 echo "Login was successful.";
                 // bind the current session to the account row
-                $_SESSION["UID"] = $row["accountID"];
-                $_SESSION["userName"] = $row["username"];
+                $_SESSION["accountID"] = $row["accountID"];
+                $_SESSION["accountEmail"] = $row["accountEmail"];
+                $_SESSION["username"] = $row["username"];
+                $_SESSION["accountRole"] = $row["accountRole"];
                 $_SESSION["loginTime"] = time();
                 header("location:../index.php");
             }
@@ -45,7 +47,12 @@
             }
         }
         else {
-            echo "<script>popup(\"Login error: No user with this username/email exists. Please try again.\", \"login.php\");</script>";
+            if ($loginType == 1) {
+                echo "<script>popup(\"Login error: No admin with this username/email exists. Please try again.\", \"login.php\");</script>";
+            }
+            else if ($loginType == 2) {
+                echo "<script>popup(\"Login error: No customer with this username/email exists. Please try again.\", \"login.php\");</script>";
+            }
         }
         mysqli_close($conn);
     ?>
