@@ -130,6 +130,8 @@
         <br>
         <div class="editProduct-container">
             <form class="editProduct" id="editProduct" action="editProduct-action.php" method="POST" enctype="multipart/form-data">
+                <input id="productIndex" name="productIndex" type="hidden" value="<?=$id;?>">  
+
                 <label for="productID">Product ID</label>
                 <input class="textfield" id="productID" name="productID" type="text" value="<?=$productID;?>" disabled><br>
 
@@ -166,7 +168,7 @@
                 <input class="textfield" id="productPrice" name="productPrice" type="text" value="<?php echo number_format($productPrice, 2);?>" required><br>
 
                 <label for="productStock">Product Stock</label>
-                <input class="textfield" id="productStock" name="productStock" type="text" value="<?=$productStock;?>" disabled><br>
+                <input class="textfield" id="productStock" name="productStock" type="number" value="<?=$productStock;?>" disabled><br>
 
                 <script type="text/javascript">
                     // there is an image upload tool here. this function previews the image to the user before it is uploaded
@@ -180,7 +182,7 @@
                     }
                 </script>
 
-                <label for="productImageToUpload">Product Image</label><br>
+                <label for="productImageToUpload">Product Image (max. 512KB)</label><br>
                 <input class="productImageToUpload" id="productImageToUpload" name="productImageToUpload" type="file" accept=".jpg, .jpeg, .png" onchange="loadFile(event)"><br><br>
 
                 <div style="text-align: center">

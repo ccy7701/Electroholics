@@ -46,7 +46,8 @@
                 }
             }
             else {  // if a session is not active
-                echo "<a href='userAuthenticationModule/login.php' class='tabRight'><b>LOGIN</b></a>";
+                $accountRole = 0;
+                echo "<a href='../userAuthenticationModule/login.php' class='tabRight'><b>LOGIN</b></a>";
             }
 
         ?>
@@ -87,13 +88,9 @@
 
                     <?php
                         // fetch the products from the database
-                        if (isset($_SESSION["accountID"])) {
-                            $accountID = $_SESSION["accountID"];
-                            $fetchProductsQuery = "SELECT * FROM catalog_item WHERE productType='motherboards'";
-                            $results = mysqli_query($conn, $fetchProductsQuery);    // all rows returned by the query
-                            $numRows = mysqli_num_rows($results);                  // number of rows returned by that query
-                        }
-
+                        $fetchProductsQuery = "SELECT * FROM catalog_item WHERE productType='motherboards'";
+                        $results = mysqli_query($conn, $fetchProductsQuery);    // all rows returned by the query
+                        $numRows = mysqli_num_rows($results);                  // number of rows returned by that query
                         $tableRowsNeeded = ceil($numRows / 3);  // the number of rows needed in the products table
 
                         for ($i = 0; $i < $tableRowsNeeded; $i++) {
