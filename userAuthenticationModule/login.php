@@ -109,7 +109,7 @@
 
 <body>
     <nav class="topnav" id="myTopnav">
-        <a href="../index.php" class="tab"><img src="../images/websiteElements/electroholicsLogo.png"><b> ELECTROHOLICS </b></a>
+        <a href="../index.php" class="tab"><img src="../images/websiteElements/siteElements/electroholicsLogo.png"><b> ELECTROHOLICS </b></a>
         <a href="../index.php" class="tab"><b>HOME</b></a>
         <a href="products.php" class="tab"><b>PRODUCTS</b></a>
         <a href="login.php" class="tabRight" style="border-bottom: 5px solid #FFFFFF;"><b>LOGIN</b></a>
@@ -120,8 +120,8 @@
         <h1 style="text-align: center;">Login</h1>
         <div class="row">
             <div class="col-left">
-                <img class="colLeftImage" id="loginAsCustomerImage" src="../images/websiteElements/loginAsCustomer.png">
-                <img class="colLeftImage" id="loginAsAdminImage" src="../images/websiteElements/loginAsAdmin.png">
+                <img class="colLeftImage" id="loginAsCustomerImage" src="../images/websiteElements/siteElements/loginAsCustomer.png">
+                <img class="colLeftImage" id="loginAsAdminImage" src="../images/websiteElements/siteElements/loginAsAdmin.png">
                 <br>
                 <h2>Log in as</h2>
                 <input class="button active" id="loginAsCustomerButton" type="button" value="Customer" onclick="setLoginForm(2);">
