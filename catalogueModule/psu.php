@@ -117,7 +117,7 @@
                                         echo "<input class='editButton' onclick=\"redirect('editProduct.php?id=$editIndex')\" type='button' value='Edit'>";
                                     }
 
-                                    echo "<br></td>";
+                                    echo "</td>";
 
                                     // in the future, might also need to add a (VIEW) button HERE to view the product
                                 }

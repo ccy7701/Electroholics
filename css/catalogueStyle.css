@@ -75,7 +75,7 @@
     padding-left: 5%;
     padding-right: 5%;  /* a more uniform and scalable padding */
     padding-top: 2%;
-    padding-bottom: 5%;
+    padding-bottom: 2%;
     text-align: center;
     align-items: center;
     box-sizing: border-box;
@@ -105,8 +105,7 @@
     width: 50%;
     height: 20px;
     transition: background-color 0.1s, color 0.1s;
-    position: absolute;
-    transform: translate(-50%, -50%);
+    position: relative;
     bottom: 0;
 }
 
