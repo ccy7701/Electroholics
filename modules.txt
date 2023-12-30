@@ -45,3 +45,13 @@ Description: Facilitates the completion of purchases and order processing.
 User Types: Customer
 CRUD Operations: Create, Read, Update, Delete
 Priority: Medium
+
+For the catalogue module the productType as follows:
+Processors (CPUs)               'cpu'
+Motherboards                    'motherboards'
+Graphics Cards (GPUs)           'gpu'
+Memory (RAM)                    'ram'
+Storage Devices (SSDs and HDDs) 'ssd'
+Power Supplies (PSUs)           'psu'
+Cases and Cooling               'cases' and 'cooling'
+Cables and Connectors           'cables'

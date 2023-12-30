@@ -1,0 +1,134 @@
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.verticalMenu {
+    background-color: #333;
+    color: #fff;
+    width: 15%;
+    overflow-y: auto;
+    min-height: 100vh;
+    float: left;
+}
+
+.verticalMenu ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.verticalMenu ul li {
+    margin: 0;
+    padding: 0;
+}
+
+.verticalMenu ul li a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #fff;
+    transition: background-color 0.3s;
+    font-size: 18px;
+}
+
+.verticalMenu ul li a:hover {
+    background-color: #555; /* Adjust the hover background color as desired */
+}
+
+.verticalMenu a.active {
+    background-color: #555; /* Highlighted background color */
+    color: #fff;            /* Highlighted text color */
+}
+
+.search-wrapper {
+    text-align: center;
+}
+
+.textBody {
+    background-color: #444444;
+    color: #FFFFFF;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    padding-left: 12%;
+    padding-right: 12%;
+    min-height: 100vh;
+    flex: 2;
+    width: 85%;
+}
+
+.indexTable {
+    width: 100%;
+    padding: 20px;
+    border-collapse: collapse;
+}
+
+.indexTable th {
+    background-color: #02134F;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.indexTable td {
+    background-color: #D9D9D9;
+    width: 33.33%;
+    padding-left: 5%;
+    padding-right: 5%;  /* a more uniform and scalable padding */
+    padding-top: 2%;
+    padding-bottom: 2%;
+    text-align: center;
+    box-sizing: border-box;
+    color: #000000;
+    transition: background-color 0.1s, color 0.1s;
+}
+
+.indexTable td:hover {
+    background-color: #FAF0E6;
+}
+
+.indexTable td p {
+    display: block;
+    padding-top: 5%;
+}
+
+.tableImage {
+    width: 50%;                
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+@media screen and (max-width: 960px) {
+    .verticalMenu {
+        width: 30%;
+    }
+    .textBody {                
+        width: 70%;
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    .indexTable td {
+        padding: 2%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #category-links {
+        display: none;
+    }
+    .verticalMenu {
+        width: 100%;
+        padding: 0;
+        min-height: 0;
+        display: flex;
+        float: center;
+    }
+    .verticalMenu ul {
+        padding-top: 20px;
+        margin: 0;
+    }
+    .textBody {
+        flex: none;
+        box-sizing: border-box;
+        width: 100%;
+    }
+}

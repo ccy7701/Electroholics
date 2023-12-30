@@ -29,8 +29,9 @@ CREATE TABLE IF NOT EXISTS user_profile (
 
 DROP TABLE IF EXISTS catalog_item;
 CREATE TABLE IF NOT EXISTS catalog_item (
-    productID varchar(16) PRIMARY KEY,
-    productType varchar(8),
+    productIndex int PRIMARY KEY AUTO_INCREMENT,
+    productID varchar(16),
+    productType varchar(16),
     productName varchar(255),
     productDescription varchar(255),
     productPrice double,
@@ -38,7 +39,7 @@ CREATE TABLE IF NOT EXISTS catalog_item (
     productImagePath varchar(255)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Data for catalog_item
+-- CPUs for catalog_item
 INSERT INTO catalog_item (productID, productType, productName, productDescription, productPrice, productStock, productImagePath) VALUES
 ('CPU001', 'cpu', 'Intel Core i5 10500 6 Cores/12 Threads 3.1/4.5Ghz LGA1200 CPU Processor', '', 705.00, 100, '../images/websiteElements/catalogueIMGs/cpu/LGA1200.png'),
 ('CPU002', 'cpu', 'Intel Core i5 12600 6 Cores/12 Threads 3.3/4.8 GHz LGA1700 CPU Processor', '', 1285.00, 90, '../images/websiteElements/catalogueIMGs/cpu/LGA1700.png'),
@@ -47,6 +48,54 @@ INSERT INTO catalog_item (productID, productType, productName, productDescriptio
 ('CPU005', 'cpu', 'AMD Ryzen 7 5700G 8 Core/16 Threads 3.8/4.6GHz AM4 CPU Processor 100-100000263BOX', '', 1249.00, 60, '../images/websiteElements/catalogueIMGs/cpu/Ryzen75700G.png'),
 ('CPU006', 'cpu', 'AMD Ryzen 9 5900X 12 Core/24 Threads 3.7/4.8GHz AM4 CPU Processor 100-100000061WOF', '', 2299.00, 50, '../images/websiteElements/catalogueIMGs/cpu/Ryzen95900X.png');
 
+-- Motherboards for catalog_item
+INSERT INTO catalog_item (productID, productType, productName, productDescription, productPrice, productStock, productImagePath) VALUES
+('MBD001', 'motherboards', 'Gigabyte Intel H610M H DDR4 Micro ATX LGA1700 Motherboard', '', 399.00, 30, '../images/websiteElements/catalogueIMGs/motherboards/H610MMotherboard.png'),
+('MBD002', 'motherboards', 'Asrock B660M PG Riptide MATX Motherboard B660M PG RIPTIDE', '', 605.00, 20, '../images/websiteElements/catalogueIMGs/motherboards/AsrockMotherboard.png'),
+('MBD003', 'motherboards', 'Gigabyte Intel Z590 AORUS XTREME E-ATX LGA1200 Motherboard ', '', 1899.00, 10, '../images/websiteElements/catalogueIMGs/motherboards/Z590Motherboard.png');
+
+-- Graphics Cards (GPUs) for catalog_item
+INSERT INTO catalog_item (productID, productType, productName, productDescription, productPrice, productStock, productImagePath) VALUES
+('GPU001', 'gpu', 'INNO3D GeForce GTX 1660 Twin X2 6GB GDDR5 Non OC Graphics Card N16602-06D5-1521VA15L', '', 939.00, 15, '../images/websiteElements/catalogueIMGs/gpu/gtx1660.png'),
+('GPU002', 'gpu', 'Palit GeForce RTX 3050 Dual OC 8GB GDDR6 Graphics Card NE63050T19P1-190AD', '', 1599.00, 10, '../images/websiteElements/catalogueIMGs/gpu/rtx3050.png'),
+('GPU003', 'gpu', 'Palit GeForce RTX 4070 Ti Gaming Pro 12GB GDDR6X Video Card NED407T019K9-1043A', '', 3919.00, 5, '../images/websiteElements/catalogueIMGs/gpu/rtx4070ti.png');
+
+-- Memory (RAM) for catalog_item
+INSERT INTO catalog_item (productID, productType, productName, productDescription, productPrice, productStock, productImagePath) VALUES
+('RAM001', 'ram', 'Corsair Vengeance RGB RS DDR4 3200MHz 8GB (1x8) Desktop Memory', '', 125.00, 75, '../images/websiteElements/catalogueIMGs/ram/vengeance1x8.png'),
+('RAM002', 'ram', 'PNY XLR8 RGB DDR4 3200MHZ 8GB (1x8) Desktop Memory Silver', '', 116.00, 65, '../images/websiteElements/catalogueIMGs/ram/pny1x8.png'),
+('RAM003', 'ram', 'Kingston FURY BEAST RGB DDR4 3600MHz 8GB (1x8) CL17 Desktop Memory', '', 134.00, 55, '../images/websiteElements/catalogueIMGs/ram/fury1x8.png');
+
+-- Storage Devices (SSDs and HDDs) for catalog_item
+INSERT INTO catalog_item (productID, productType, productName, productDescription, productPrice, productStock, productImagePath) VALUES
+('SSD001', 'ssd', 'Seagate BarraCuda 3.5" 1TB SATA3 Internal Hard Drive ST1000DM010', '', 159.00, 80, '../images/websiteElements/catalogueIMGs/ssd/seagate1tb.png'),
+('SSD002', 'ssd', 'Seagate BarraCuda 3.5" 2TB SATA3 Internal Hard Drive ST2000DM008', '', 229.00, 70, '../images/websiteElements/catalogueIMGs/ssd/seagate2tb.png'),
+('SSD003', 'ssd', 'Seagate BarraCuda 3.5" 8TB SATA3 Internal Hard Drive ST8000DM004', '', 1339.00, 30, '../images/websiteElements/catalogueIMGs/ssd/seagate8tb.png');
+
+-- Power Supplies (PSUs) for catalog_item
+INSERT INTO catalog_item (productID, productType, productName, productDescription, productPrice, productStock, productImagePath) VALUES
+('PSU001', 'psu', 'FSP HV Pro 550W 80 plus Bronze Power Supply FSP550-51AAC', '', 195.00, 35, '../images/websiteElements/catalogueIMGs/psu/hv550W.png'),
+('PSU002', 'psu', 'Cooler Master G Gold 600W 80+ Gold Non Modular Power Supply', '', 299.00, 30, '../images/websiteElements/catalogueIMGs/psu/cm600W.png'),
+('PSU003', 'psu', 'Cooler Master V650 Gold V2 Gold Full Modular Power Supply-White edition', '', 422.00, 25, '../images/websiteElements/catalogueIMGs/psu/cm650W.png');
+
+-- Cases and Cooling for catalog_item
+INSERT INTO catalog_item (productID, productType, productName, productDescription, productPrice, productStock, productImagePath) VALUES
+('CAS001', 'cases', 'Tecware Forge S TG ARGB ATX Black Gaming Case', '', 185.00, 45, '../images/websiteElements/catalogueIMGs/cases/tecware.png'),
+('CAS002', 'cases', 'Cooler Master MasterBox TD500 ARGB Mesh ATX Case Black', '', 365.00, 40, '../images/websiteElements/catalogueIMGs/cases/cmmasterbox.png'),
+('CAS003', 'cases', 'Cooler Master MasterCase H500P ARGB Mesh Mid Tower ATX Case Black', '', 559.00, 35, '../images/websiteElements/catalogueIMGs/cases/cmh500p.png'),
+('CLG001', 'cooling', 'Thermalright TL-C12015 120mm Cooling Fan - Black', '', 55.00, 52, '../images/websiteElements/catalogueIMGs/cooling/thermalright.png'),
+('CLG001', 'cooling', 'Corsair iCUE SP140 RGB PRO Performance 140mm Fan', '', 119.00, 48, '../images/websiteElements/catalogueIMGs/cooling/corsaircooler.png'),
+('CLG001', 'cooling', 'Corsair iCUE QL140 RGB PWM White 140mm Fan', '', 179.00, 46, '../images/websiteElements/catalogueIMGs/cooling/corsaircooler2.png');
+
+
+
+
+
+-- Cables and Connectors for catalog_item
+INSERT INTO catalog_item (productID, productType, productName, productDescription, productPrice, productStock, productImagePath) VALUES
+('CBL001', 'cables', 'Bitfenix Sleeved 45cm Blue/Black 24-pin ATX ext Cable', '', 2.00, 200, '../images/websiteElements/catalogueIMGs/cables/atxcable.png'),
+('CBL002', 'cables', 'Orico XD-DPDT4 DP (M) to DP (M) Version 1.2 4K Adapter Cable - 3M', '', 33.00, 55, '../images/websiteElements/catalogueIMGs/cables/dpcable.png'),
+('CBL003', 'cables', 'Bitfenix Sleeved 45cm Blue/Black 8-pin video card ext cable', '', 2.00, 150, '../images/websiteElements/catalogueIMGs/cables/videocardcable.png');
 
 -- Table structure for item_order
 
