@@ -1,5 +1,6 @@
 <?php
     session_start();
+    include("../include/config.php");
 ?>
 
 <!DOCTYPE HTML>
@@ -212,44 +213,50 @@
 
             <div class="textBody">
                 <br>
+
                 <table class="indexTable" id="tableFeaturedProducts">
                     <tr>
                         <th colspan=3 style="font-size: 30px;">Processors</th>
                     </tr>
-                    <tr>
-                        <td>
-                            <img class="tableImage" src="../images/websiteElements/catalogueIMGs/cpu/LGA1200.png"><br>
-                            <p>Intel Core i5 10500 6 Cores/12 Threads 3.1/4.5Ghz LGA1200 CPU Processor</p>
-                            <p><b>RM705</b></p>
-                        </td>
-                        <td>
-                            <img class="tableImage" src="../images/websiteElements/catalogueIMGs/cpu/LGA1700.png"><br>
-                            <p>Intel Core i5 12600 6 Cores/12 Threads 3.3/4.8 GHz LGA1700 CPU Processor</p>
-                            <p><b>RM1285</b></p>
-                        </td>
-                        <td>
-                            <img class="tableImage" src="../images/websiteElements/catalogueIMGs/cpu/LGA1700i7.png"><br>
-                            <p>Intel Core i7 13700F 16 Cores/24 Threads 2.1/5.2GHz LGA1700 CPU Processor</p>
-                            <p><b>RM1709</b></p>
-                        </td> 
-                    </tr>
-                    <tr>
-                        <td>
-                            <img class="tableImage" src="../images/websiteElements/catalogueIMGs/cpu/Ryzen55600.png"><br>
-                            <p>AMD Ryzen 5 5600 6 Core/12 Threads 3.9/4.4GHz AM4 CPU Processor 100-100000927BOX</p>
-                            <p><b>RM819</b></p>
-                        </td>
-                        <td>
-                            <img class="tableImage" src="../images/websiteElements/catalogueIMGs/cpu/Ryzen75700G.png"><br>
-                            <p>AMD Ryzen 7 5700G 8 Core/16 Threads 3.8/4.6GHz AM4 CPU Processor 100-100000263BOX</p>
-                            <p><b>RM1249</b></p>
-                        </td>
-                        <td>
-                            <img class="tableImage" src="../images/websiteElements/catalogueIMGs/cpu/Ryzen95900X.png"><br>
-                            <p>AMD Ryzen 9 5900X 12 Core/24 Threads 3.7/4.8GHz AM4 CPU Processor 100-100000061WOF</p>
-                            <p><b>RM2299</b></p>
-                        </td> 
-                    </tr>
+
+                    <?php
+                        // fetch the products from the database
+                        if (isset($_SESSION["accountID"])) {
+                            $accountID = $_SESSION["accountID"];
+                            $fetchProductsQuery = "SELECT * FROM catalog_item WHERE productType='cpu'";
+                            $results = mysqli_query($conn, $fetchProductsQuery);    // all rows returned by the query
+                            $numRows = mysqli_num_rows($results);                  // number of rows returned by that query
+                        }
+
+                        $tableRowsNeeded = ceil($numRows / 3);  // the number of rows needed in the products table
+
+                        for ($i = 0; $i < $tableRowsNeeded; $i++) {
+                            echo '<tr>';
+
+                            // start the inner loop for <td> elements
+                            for ($j = 0; $j < 3; $j++) {
+                                // fetch the current row from the results
+                                $row = mysqli_fetch_assoc($results);
+
+                                if ($row) {
+                                    // output the content of each cell
+                                    echo "<td>";
+                                    echo "<img class='tableImage' src='".$row['productImagePath']."'><br>";
+                                    echo "<p>".$row['productName']."</p>";
+                                    echo "<p><b>RM".number_format($row['productPrice'], 2)."</b></p>";
+                                    echo "</td>";
+
+                                    // in the future, might also need to add a (VIEW) button HERE to view the product
+                                }
+                                else {
+                                    // if no more rows, output an empty cell
+                                    echo "<td>&nbsp;</td>";
+                                }
+                            }
+
+                            echo "</tr>";
+                        }
+                    ?>
                 </table>
 
                 <script type="text/javascript">
