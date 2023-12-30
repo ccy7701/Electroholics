@@ -84,8 +84,8 @@ INSERT INTO catalog_item (productID, productType, productName, productDescriptio
 ('CAS002', 'cases', 'Cooler Master MasterBox TD500 ARGB Mesh ATX Case Black', '', 365.00, 40, '../images/websiteElements/catalogueIMGs/cases/cmmasterbox.png'),
 ('CAS003', 'cases', 'Cooler Master MasterCase H500P ARGB Mesh Mid Tower ATX Case Black', '', 559.00, 35, '../images/websiteElements/catalogueIMGs/cases/cmh500p.png'),
 ('CLG001', 'cooling', 'Thermalright TL-C12015 120mm Cooling Fan - Black', '', 55.00, 52, '../images/websiteElements/catalogueIMGs/cooling/thermalright.png'),
-('CLG001', 'cooling', 'Corsair iCUE SP140 RGB PRO Performance 140mm Fan', '', 119.00, 48, '../images/websiteElements/catalogueIMGs/cooling/corsaircooler.png'),
-('CLG001', 'cooling', 'Corsair iCUE QL140 RGB PWM White 140mm Fan', '', 179.00, 46, '../images/websiteElements/catalogueIMGs/cooling/corsaircooler2.png');
+('CLG002', 'cooling', 'Corsair iCUE SP140 RGB PRO Performance 140mm Fan', '', 119.00, 48, '../images/websiteElements/catalogueIMGs/cooling/corsaircooler.png'),
+('CLG003', 'cooling', 'Corsair iCUE QL140 RGB PWM White 140mm Fan', '', 179.00, 46, '../images/websiteElements/catalogueIMGs/cooling/corsaircooler2.png');
 
 
 

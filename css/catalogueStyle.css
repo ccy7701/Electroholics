@@ -75,11 +75,13 @@
     padding-left: 5%;
     padding-right: 5%;  /* a more uniform and scalable padding */
     padding-top: 2%;
-    padding-bottom: 2%;
+    padding-bottom: 5%;
     text-align: center;
+    align-items: center;
     box-sizing: border-box;
     color: #000000;
     transition: background-color 0.1s, color 0.1s;
+    position: relative;
 }
 
 .indexTable td:hover {
@@ -97,6 +99,22 @@
     padding-right: 5%;
 }
 
+.editButton {
+    background-color: #FFFFFF;
+    border: 1px solid #888888;
+    width: 50%;
+    height: 20px;
+    transition: background-color 0.1s, color 0.1s;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    bottom: 0;
+}
+
+.editButton:hover {
+    background-color: #AAF0E6;
+    cursor: pointer;
+}
+
 @media screen and (max-width: 960px) {
     .verticalMenu {
         width: 30%;
@@ -108,6 +126,7 @@
     }
     .indexTable td {
         padding: 2%;
+        max-height: 11em;   /* enforce the max height at 11em */
     }
 }
 

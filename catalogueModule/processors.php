@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="../css/catalogueStyle.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="siteJavascript.js"></script>
+    <script src="../siteJavascript.js"></script>
     <style>
 
     </style>
@@ -111,7 +111,13 @@
                                     echo "<img class='tableImage' src='".$row['productImagePath']."'><br>";
                                     echo "<p>".$row['productName']."</p>";
                                     echo "<p><b>RM".number_format($row['productPrice'], 2)."</b></p>";
-                                    echo "</td>";
+
+                                    if ($accountRole == 1) {    // if admin is logged in, show edit button for the product
+                                        $editIndex = $row['productIndex'];
+                                        echo "<input class='editButton' onclick=\"redirect('editProduct.php?id=$editIndex')\" type='button' value='Edit'>";
+                                    }
+
+                                    echo "<br></td>";
 
                                     // in the future, might also need to add a (VIEW) button HERE to view the product
                                 }
