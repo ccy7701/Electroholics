@@ -17,7 +17,28 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="../siteJavascript.js"></script>
     <style>
-        
+        .addProductButtonMin {
+            text-align: center;
+        }
+        .addProductButtonMin button {
+            background-color: #02134F;
+            color: #FFF;
+            width: 30%;
+            height: 40px;
+            font-size: 18px;
+            border: 1px solid #666666;
+            transition: background-color 0.1s, color 0.1s;
+        }
+        .addProductButtonMin button:hover {
+            background-color: #FFFFFF;
+            color: #000;
+            cursor: pointer;
+        }
+        @media screen and (max-width: 600px) {
+            .addProductButtonMin button {
+                width: 40%;
+            }
+        }
     </style>
 </head>
 
@@ -79,6 +100,16 @@
             </div>
 
             <div class="textBody">
+                <br>
+
+                <div class="addProductButtonMin">
+                    <?php
+                    if ($accountRole == 1) {
+                        echo "<button onclick=\"window.location.href='addProduct.php'\">Add Product</button>";
+                    }
+                    ?>
+                </div>
+
                 <br>
 
                 <table class="indexTable" id="tableFeaturedProducts">

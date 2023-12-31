@@ -125,7 +125,6 @@
     }
     .indexTable td {
         padding: 2%;
-        max-height: 11em;   /* enforce the max height at 11em */
     }
 }
 
