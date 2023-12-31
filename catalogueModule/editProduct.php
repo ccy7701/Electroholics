@@ -146,6 +146,8 @@
         <br>
         <div class="editProduct-container">
             <form class="editProduct" id="editProduct" action="editProduct-action.php" method="POST" enctype="multipart/form-data">
+                <caption><h2 style="text-align: center;">Edit Product</h2></caption>
+            
                 <input id="productIndex" name="productIndex" type="hidden" value="<?=$id;?>">  
 
                 <label for="productID">Product ID</label>
