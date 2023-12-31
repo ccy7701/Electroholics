@@ -18,7 +18,7 @@
         // commit to the database the data from the editable fields ONLY
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $target = mysqli_real_escape_string($conn, $_POST["productIndex"]);
-            $newProductType = mysqli_real_escape_string($conn, $_POST["productType"]);
+            $productType = mysqli_real_escape_string($conn, $_POST["productType"]);
             $newProductName = mysqli_real_escape_string($conn, $_POST["productName"]);
             $newProductDescription = mysqli_real_escape_string($conn, $_POST["productDescription"]);
             $newProductPrice = str_replace(",", "", mysqli_real_escape_string($conn, $_POST["productPrice"]));
@@ -30,7 +30,7 @@
             if (isset($_FILES["productImageToUpload"]) && $_FILES["productImageToUpload"]["name"] == "") {
                 $updateDBQuery = "
                     UPDATE catalog_item
-                    SET productType = '$newProductType', productName = '$newProductName',
+                    SET productName = '$newProductName',
                     productDescription = '$newProductDescription', productPrice = '$newProductPrice'
                     WHERE productIndex = '$target'; 
                 ";
@@ -59,7 +59,7 @@
 
                 // determine which catalogueIMG subdirectory to go to
                 $subdirectory = "";
-                switch ($newProductType) {
+                switch ($productType) {
                     case "cpu":
                         $subdirectory = "cpu/"; break;
                     case "motherboards":
@@ -129,7 +129,7 @@
                     $fullPath = $targetDirectory.$subdirectory.$imgName;
                     $updateDBQuery = "
                         UPDATE catalog_item
-                        SET productType = '$newProductType', productName = '$newProductName',
+                        SET productName = '$newProductName',
                         productDescription = '$newProductDescription', productPrice = '$newProductPrice',
                         productImagePath = '$fullPath'
                         WHERE productIndex = '$target';

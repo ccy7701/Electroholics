@@ -17,6 +17,22 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="../siteJavascript.js"></script>
+    <script type="text/javascript">
+        function createPath(target) {
+            let scriptPath = "deleteProduct-action.php?id=";
+            let overallPath = scriptPath.concat(target);
+            return overallPath;
+        }
+        function confirmRemoval(targetID) {
+            var promptConfirm = confirm("Are you sure you want to delete this product?");
+            if (promptConfirm) {
+                // if OK is clicked, redirect to deleteProduct-action with the targetID
+                var path = createPath(targetID);
+                window.location.href = path;
+            }
+            // do nothing otherwise
+        }
+    </script>
     <style>
         main {
             min-height: 90vh;
@@ -136,27 +152,21 @@
                 <input class="textfield" id="productID" name="productID" type="text" value="<?=$productID;?>" disabled><br>
 
                 <label for="productType">Product Type</label>
-                <select id="productType" name="productType">
-                    <?php
-                        // the product types as the database will accept
-                        $availableProductTypes = ['cpu', 'motherboards', 'gpu', 'ram', 'ssd', 'psu', 'cases', 'cooling', 'cables'];
-                        // the names associated to each product type that will be displayed in the form
-                        $productTypeAssocArray = ['cpu'=>'CPU', 'motherboards'=>'Motherboard', 'gpu'=>'GPU',
-                                                'ram'=>'RAM', 'ssd'=>'SSD', 'psu'=>'PSU',
-                                                'cases'=>'Case', 'cooling'=>'Cooling', 'cables'=>'Cable'];
+                <?php
+                    // the product types as the database will accept
+                    $availableProductTypes = ['cpu', 'motherboards', 'gpu', 'ram', 'ssd', 'psu', 'cases', 'cooling', 'cables'];
+                    // the names associated to each product type that will be displayed in the form
+                    $productTypeAssocArray = ['cpu'=>'CPU', 'motherboards'=>'Motherboard', 'gpu'=>'GPU',
+                                            'ram'=>'RAM', 'ssd'=>'SSD', 'psu'=>'PSU',
+                                            'cases'=>'Case', 'cooling'=>'Cooling', 'cables'=>'Cable'];
 
-                        foreach ($availableProductTypes as $option) {
-                            $displayString = isset($productTypeAssocArray[$option]) ? $productTypeAssocArray[$option] : $option;
-
-                            if ($option == $productType) {
-                                echo "<option value=".$option." selected>".$displayString."</option>";
-                            }
-                            else {
-                                echo "<option value=".$option.">".$displayString."</option>";
-                            }
+                    foreach ($availableProductTypes as $option) {
+                        $displayString = isset($productTypeAssocArray[$option]) ? $productTypeAssocArray[$option] : $option;
+                        if ($option == $productType) {
+                            echo "<input class='textfield' id='productType' name='productType' type='text' value=\"$displayString\" disabled><br>";
                         }
-                    ?>
-                </select><br>
+                    }
+                ?>
 
                 <label for="productName">Product Name</label>
                 <input class="textfield" id="productName" name="productName" type="text" value="<?=$productName;?>" required><br>
@@ -189,7 +199,7 @@
                     <img id="output" src="<?=$productImagePath;?>" style="max-width: 256px; max-height: 256px; background-color: #FFFFFF; border: 2px solid #666666;"><br><br>
 
                     <input class="button" name="buttonSubmit" type="submit" value="Edit">
-                    <input class="button" name="buttonDelete" type="button" value="Delete">
+                    <input class="button" name="buttonDelete" type="button" onclick="confirmRemoval(<?=$id;?>)" value="Delete">
                     <input class="button" name="buttonCancel" type="button" onclick="history.back();" value="Cancel">
                 </div>
                 <br>
