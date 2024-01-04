@@ -62,7 +62,18 @@
                     // add more in the future as and when required
                 }
                 else if ($accountRole == 2) {   // otherwise, just show tabs available to the customer
-                    echo "<a href='../shoppingCartModule/#' class='tab'><i class='fa fa-shopping-cart'><b></i> My Cart (# items)</b></a>";
+                    // query for customer's cart
+                    $cartQuery = "
+                        SELECT COUNT(item_order.cartID) AS numberOfCartItems FROM item_order
+                        JOIN cart on item_order.cartID = cart.cartID
+                        JOIN user_profile ON cart.userID = user_profile.userID
+                        WHERE user_profile.accountID = '$accountID' AND cart.isActive = 1;
+                    ";
+                    $result = mysqli_query($conn, $cartQuery);
+                    $row = mysqli_fetch_assoc($result);
+                    $numberOfCartItems = $row["numberOfCartItems"];
+
+                    echo "<a href='../shoppingCartModule/#' class='tab'><i class='fa fa-shopping-cart'><b></i> My Cart ($numberOfCartItems items)</b></a>";
                     echo "<a href='../userProfileAndAccountModule/myAccount.php' class='tab'><b><i class='fa fa-user-circle-o'></i> $username</b></a>";
                     echo "<a href='../userAuthenticationModule/logout.php' class='tabRight'><b>LOGOUT</b></a>";
                 }
@@ -143,6 +154,15 @@
                                     if ($accountRole == 1) {    // if admin is logged in, show edit button for the product
                                         $editIndex = $row['productIndex'];
                                         echo "<input class='editButton' onclick=\"redirect('editProduct.php?id=$editIndex')\" type='button' value='Edit'>";
+                                    }
+                                    else if ($accountRole == 2) {   // if customer is logged in, show add to cart button for the product
+                                        // the add to cart button is down here
+                                        echo '<div class="add-to-cart">';
+                                        echo '<button onclick="...">Add to Cart</button>';
+                                        echo '</div>';
+                                    }
+                                    else {
+                                        // leave this empty for now
                                     }
 
                                     echo "<br></td>";

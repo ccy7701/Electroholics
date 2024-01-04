@@ -112,7 +112,7 @@
             background-color: #D9D9D9;
         }
         .inventoryTable .definingRow {
-            font-size: 20px;
+            font-size: 18px;
             font-weight: bold;
         }
         .inventoryTable .itemRow {
@@ -135,17 +135,25 @@
             color: black;
             text-align: center;
         }
-        .editButton {
+        .editButtonInv {
             text-align: center;
+            color: #000000;
             background-color: #FFFFFF;
             border: 1px solid #888888;
             width: 50%;
-            height: 20px;
+            height: 50px;
+            font-size: 16px;
             transition: background-color 0.1s, color 0.1s;
         }
-        .editButton:hover {
+        .editButtonInv:hover {
             background-color: #AAF0E6;
             cursor: pointer;
+        }
+        @media screen and (max-width: 900px) {
+            .editButtonInv {
+                width: 100%;
+                font-size: 14px;
+            }
         }
         @media screen and (max-width: 600px) {
             .navTab {
@@ -173,9 +181,6 @@
             .inventoryTable td {
                 max-width: 100px;
                 font-size: 14px;
-            }
-            .editButton {
-                width: 100%;
             }
         }
     </style>
@@ -258,7 +263,7 @@
                                     echo "<td class='productNameColumn'>".$row["productName"]."</td>";
                                     echo "<td>".$row["productPrice"]."</td>";
                                     echo "<td>".$row["productStock"]."";
-                                    echo "<td><input class='editButton' onclick=\"redirect('editStock.php?id=".$row["productIndex"]."')\" type='button' value='Edit Stock'></td>";
+                                    echo "<td><input class='editButtonInv' onclick=\"redirect('editStock.php?id=".$row["productIndex"]."')\" type='button' value='Edit\nStock'></td>";
                                     echo "</tr>";
                                     echo "<tr><td colspan='5'>&nbsp;</td></tr>";
                                 }
@@ -299,7 +304,7 @@
                                     echo "<td class='productNameColumn'>".$row["productName"]."</td>";
                                     echo "<td>".$row["productPrice"]."</td>";
                                     echo "<td>".$row["productStock"]."";
-                                    echo "<td><input class='editButton' onclick=\"redirect('editStock.php?id=".$row["productIndex"]."')\" type='button' value='Edit Stock'></td>";
+                                    echo "<td><input class='editButtonInv' onclick=\"redirect('editStock.php?id=".$row["productIndex"]."')\" type='button' value='Edit Stock'></td>";
                                     echo "</tr>";
                                     echo "<tr><td colspan='5'>&nbsp;</td></tr>";
                                 }
@@ -340,7 +345,7 @@
                                     echo "<td class='productNameColumn'>".$row["productName"]."</td>";
                                     echo "<td>".$row["productPrice"]."</td>";
                                     echo "<td>".$row["productStock"]."";
-                                    echo "<td><input class='editButton' onclick=\"redirect('editStock.php?id=".$row["productIndex"]."')\" type='button' value='Edit Stock'></td>";
+                                    echo "<td><input class='editButtonInv' onclick=\"redirect('editStock.php?id=".$row["productIndex"]."')\" type='button' value='Edit Stock'></td>";
                                     echo "</tr>";
                                     echo "<tr><td colspan='5'>&nbsp;</td></tr>";
                                 }
@@ -381,7 +386,7 @@
                                     echo "<td class='productNameColumn'>".$row["productName"]."</td>";
                                     echo "<td>".$row["productPrice"]."</td>";
                                     echo "<td>".$row["productStock"]."";
-                                    echo "<td><input class='editButton' onclick=\"redirect('editStock.php?id=".$row["productIndex"]."')\" type='button' value='Edit Stock'></td>";
+                                    echo "<td><input class='editButtonInv' onclick=\"redirect('editStock.php?id=".$row["productIndex"]."')\" type='button' value='Edit Stock'></td>";
                                     echo "</tr>";
                                     echo "<tr><td colspan='5'>&nbsp;</td></tr>";
                                 }
@@ -422,7 +427,7 @@
                                     echo "<td class='productNameColumn'>".$row["productName"]."</td>";
                                     echo "<td>".$row["productPrice"]."</td>";
                                     echo "<td>".$row["productStock"]."";
-                                    echo "<td><input class='editButton' onclick=\"redirect('editStock.php?id=".$row["productIndex"]."')\" type='button' value='Edit Stock'></td>";
+                                    echo "<td><input class='editButtonInv' onclick=\"redirect('editStock.php?id=".$row["productIndex"]."')\" type='button' value='Edit Stock'></td>";
                                     echo "</tr>";
                                     echo "<tr><td colspan='5'>&nbsp;</td></tr>";
                                 }
@@ -463,7 +468,7 @@
                                     echo "<td class='productNameColumn'>".$row["productName"]."</td>";
                                     echo "<td>".$row["productPrice"]."</td>";
                                     echo "<td>".$row["productStock"]."";
-                                    echo "<td><input class='editButton' onclick=\"redirect('editStock.php?id=".$row["productIndex"]."')\" type='button' value='Edit Stock'></td>";
+                                    echo "<td><input class='editButtonInv' onclick=\"redirect('editStock.php?id=".$row["productIndex"]."')\" type='button' value='Edit Stock'></td>";
                                     echo "</tr>";
                                     echo "<tr><td colspan='5'>&nbsp;</td></tr>";
                                 }
@@ -504,7 +509,7 @@
                                     echo "<td class='productNameColumn'>".$row["productName"]."</td>";
                                     echo "<td>".$row["productPrice"]."</td>";
                                     echo "<td>".$row["productStock"]."";
-                                    echo "<td><input class='editButton' onclick=\"redirect('editStock.php?id=".$row["productIndex"]."')\" type='button' value='Edit Stock'></td>";
+                                    echo "<td><input class='editButtonInv' onclick=\"redirect('editStock.php?id=".$row["productIndex"]."')\" type='button' value='Edit Stock'></td>";
                                     echo "</tr>";
                                     echo "<tr><td colspan='5'>&nbsp;</td></tr>";
                                 }
@@ -545,7 +550,7 @@
                                     echo "<td class='productNameColumn'>".$row["productName"]."</td>";
                                     echo "<td>".$row["productPrice"]."</td>";
                                     echo "<td>".$row["productStock"]."";
-                                    echo "<td><input class='editButton' onclick=\"redirect('editStock.php?id=".$row["productIndex"]."')\" type='button' value='Edit Stock'></td>";
+                                    echo "<td><input class='editButtonInv' onclick=\"redirect('editStock.php?id=".$row["productIndex"]."')\" type='button' value='Edit Stock'></td>";
                                     echo "</tr>";
                                     echo "<tr><td colspan='5'>&nbsp;</td></tr>";
                                 }
@@ -586,7 +591,7 @@
                                     echo "<td class='productNameColumn'>".$row["productName"]."</td>";
                                     echo "<td>".$row["productPrice"]."</td>";
                                     echo "<td>".$row["productStock"]."";
-                                    echo "<td><input class='editButton' onclick=\"redirect('editStock.php?id=".$row["productIndex"]."')\" type='button' value='Edit Stock'></td>";
+                                    echo "<td><input class='editButtonInv' onclick=\"redirect('editStock.php?id=".$row["productIndex"]."')\" type='button' value='Edit Stock'></td>";
                                     echo "</tr>";
                                     echo "<tr><td colspan='5'>&nbsp;</td></tr>";
                                 }
@@ -599,15 +604,6 @@
                     </table>
                 </div>
             </div>
-
-
-
-
-
-
-
-
-
         </div>
     </main>
 

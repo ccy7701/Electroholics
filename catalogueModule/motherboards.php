@@ -138,13 +138,20 @@
                                     echo "<img class='tableImage' src='".$row['productImagePath']."'><br>";
                                     echo "<p>".$row['productName']."</p>";
                                     echo "<p><b>RM".number_format($row['productPrice'], 2)."</b></p>";
-
+                                     
                                     if ($accountRole == 1) {    // if admin is logged in, show edit button for the product
                                         $editIndex = $row['productIndex'];
                                         echo "<input class='editButton' onclick=\"redirect('editProduct.php?id=$editIndex')\" type='button' value='Edit'>";
                                     }
-
-                                    echo "</td>";
+                                    else if ($accountRole == 2) {   // if customer is logged in, show add to cart button for the product
+                                        // the add to cart button is down here
+                                        echo '<div class="add-to-cart">';
+                                        echo '<button onclick="addToCart(' . $row['productIndex'] . ')">Add to Cart</button>';
+                                        echo '</div>';
+                                    }
+                                    else {
+                                        // leave this empty for now
+                                    }
 
                                     // in the future, might also need to add a (VIEW) button HERE to view the product
                                 }

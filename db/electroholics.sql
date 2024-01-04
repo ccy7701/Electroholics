@@ -127,6 +127,7 @@ CREATE TABLE IF NOT EXISTS item_order (
 INSERT INTO item_order (cartID, productIndex, orderQuantity, orderCost) VALUES
 (1, 1, 5, (SELECT catalog_item.productPrice * 5 AS orderCost FROM catalog_item WHERE productIndex = 1)),
 (1, 2, 10, (SELECT catalog_item.productPrice * 10 AS orderCost FROM catalog_item WHERE productIndex = 2));
+(1, 3, 7, (SELECT catalog_item.productPrice * 7 AS orderCost FROM catalog_item WHERE productIndex = 3));
 
 INSERT INTO item_order (cartID, productIndex, orderQuantity, orderCost) VALUES
 (?, ?, 1, (SELECT catalog_item.productPrice * 1 AS ? FROM catalog_item WHERE productIndex = ?));

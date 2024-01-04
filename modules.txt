@@ -55,3 +55,14 @@ Storage Devices (SSDs and HDDs) 'ssd'
 Power Supplies (PSUs)           'psu'
 Cases and Cooling               'cases' and 'cooling'
 Cables and Connectors           'cables'
+
+
+For the catalogue module the productType as follows:
+Processors (CPUs)               'cpu'
+Motherboards                    'motherboards'
+Graphics Cards (GPUs)           'gpu'
+Memory (RAM)                    'ram'
+Storage Devices (SSDs and HDDs) 'ssd'
+Power Supplies (PSUs)           'psu'
+Cases and Cooling               'cases' and 'cooling'
+Cables and Connectors           'cables'

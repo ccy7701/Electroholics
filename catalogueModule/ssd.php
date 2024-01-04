@@ -144,8 +144,17 @@
                                         $editIndex = $row['productIndex'];
                                         echo "<input class='editButton' onclick=\"redirect('editProduct.php?id=$editIndex')\" type='button' value='Edit'>";
                                     }
+                                    else if ($accountRole == 2) {   // if customer is logged in, show add to cart button for the product
+                                        // the add to cart button is down here
+                                        echo '<div class="add-to-cart">';
+                                        echo '<button onclick="addToCart(' . $row['productIndex'] . ')">Add to Cart</button>';
+                                        echo '</div>';
+                                    }
+                                    else {
+                                        // leave this empty for now
+                                    }
 
-                                    echo "</td>";
+                                    echo "<br></td>";
 
                                     // in the future, might also need to add a (VIEW) button HERE to view the product
                                 }
