@@ -87,27 +87,46 @@ INSERT INTO catalog_item (productID, productType, productName, productDescriptio
 ('CLG002', 'cooling', 'Corsair iCUE SP140 RGB PRO Performance 140mm Fan', '', 119.00, 48, '../images/websiteElements/catalogueIMGs/cooling/corsaircooler.png'),
 ('CLG003', 'cooling', 'Corsair iCUE QL140 RGB PWM White 140mm Fan', '', 179.00, 46, '../images/websiteElements/catalogueIMGs/cooling/corsaircooler2.png');
 
-
-
-
-
 -- Cables and Connectors for catalog_item
 INSERT INTO catalog_item (productID, productType, productName, productDescription, productPrice, productStock, productImagePath) VALUES
 ('CBL001', 'cables', 'Bitfenix Sleeved 45cm Blue/Black 24-pin ATX ext Cable', '', 2.00, 200, '../images/websiteElements/catalogueIMGs/cables/atxcable.png'),
 ('CBL002', 'cables', 'Orico XD-DPDT4 DP (M) to DP (M) Version 1.2 4K Adapter Cable - 3M', '', 33.00, 55, '../images/websiteElements/catalogueIMGs/cables/dpcable.png'),
 ('CBL003', 'cables', 'Bitfenix Sleeved 45cm Blue/Black 8-pin video card ext cable', '', 2.00, 150, '../images/websiteElements/catalogueIMGs/cables/videocardcable.png');
 
+-- Table structure for cart
+
+DROP TABLE IF EXISTS cart;
+CREATE TABLE IF NOT EXISTS cart (
+    cartID int PRIMARY KEY AUTO_INCREMENT,
+    userID int,
+    totalCost double,
+    isActive int,
+    FOREIGN KEY (userID) REFERENCES user_profile(userID) ON DELETE CASCADE
+)   ENGINE=INNODB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Data for cart
+INSERT INTO CART (userID, totalCost, isActive) VALUES
+(1, 0.00, 1),
+(2, 0.00, 1);
+
 -- Table structure for item_order
 
 DROP TABLE IF EXISTS item_order;
 CREATE TABLE IF NOT EXISTS item_order (
-    orderID int PRIMARY KEY AUTO_INCREMENT,
-    userID int,
-    productID int,
+    cartID int,
+    productIndex int,
     orderQuantity int,
     orderCost double,
-    FOREIGN KEY (userID) REFERENCES user_profile(userID),
-    FOREIGN KEY (productID) REFERENCES catalog_item(productID)
-) ENGINE=INNODB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+    FOREIGN KEY (cartID) REFERENCES cart(cartID) ON DELETE CASCADE,
+    FOREIGN KEY (productIndex) REFERENCES catalog_item(productIndex) ON DELETE CASCADE
+)   ENGINE=INNODB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- 
+-- Data for item_order
+-- example: SELECT (catalog_item.productPrice * orderQuantity) AS totalCost FROM catalog_item WHERE productIndex = 1;
+-- assume orderQuantity == 5 and assume catalog_item.productPrice = 1 (so it should be 705 * 5 = 3525 if it works correctly)
+INSERT INTO item_order (cartID, productIndex, orderQuantity, orderCost) VALUES
+(1, 1, 5, (SELECT catalog_item.productPrice * 5 AS orderCost FROM catalog_item WHERE productIndex = 1)),
+(1, 2, 10, (SELECT catalog_item.productPrice * 10 AS orderCost FROM catalog_item WHERE productIndex = 2));
+
+INSERT INTO item_order (cartID, productIndex, orderQuantity, orderCost) VALUES
+(?, ?, 1, (SELECT catalog_item.productPrice * 1 AS ? FROM catalog_item WHERE productIndex = ?));
