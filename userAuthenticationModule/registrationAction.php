@@ -59,11 +59,20 @@
             if (mysqli_query($conn, $pushToAccountQuery)) {  // assuming the account was created successfully, then a new profile row is also created
                 $lastInsertedID = mysqli_insert_id($conn);
 
-                $pushToProfileQuery = "INSERT INTO user_profile (accountID, userAddress, userContact, userDOB) VALUES 
-                ('$lastInsertedID', '', '', '');";
+                $pushToProfileQuery = "INSERT INTO user_profile (accountID, userFullName, userAddress, userContact, userDOB) VALUES 
+                ('$lastInsertedID', '', '', '', '');";
 
                 if (mysqli_query($conn, $pushToProfileQuery)) {
-                    echo "<script>popup(\"New account created successfully. You will now be redirected to the login page.\", \"login.php\");</script>";
+                    $pushToCartQuery = "INSERT INTO cart (userID, totalCost, isActive) VALUES
+                    ('$lastInsertedID', 0.00, 1);";
+                    
+                    if (mysqli_query($conn, $pushToCartQuery)) {
+                        echo "<script>popup(\"New account created successfully. You will now be redirected to the login page.\", \"login.php\");</script>";
+                    }
+                    else {
+                        $errorMessage = mysqli_error($conn);
+                    echo "<script>popup(\"ERROR: '$errorMessage', \"registration.php\")</script>";
+                    }
                 }
                 else {
                     $errorMessage = mysqli_error($conn);

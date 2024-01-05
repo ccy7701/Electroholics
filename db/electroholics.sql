@@ -19,9 +19,10 @@ DROP TABLE IF EXISTS user_profile;
 CREATE TABLE IF NOT EXISTS user_profile (
     userID int PRIMARY KEY AUTO_INCREMENT,
     accountID int,
+    userFullName varchar(255),
     userAddress varchar(255),
     userContact varchar(255),
-    userDOB datetime,
+    userDOB date,
     FOREIGN KEY (accountID) REFERENCES account(accountID) ON DELETE CASCADE
 ) ENGINE=INNODB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -129,5 +130,5 @@ INSERT INTO item_order (cartID, productIndex, orderQuantity, orderCost) VALUES
 (1, 2, 10, (SELECT catalog_item.productPrice * 10 AS orderCost FROM catalog_item WHERE productIndex = 2));
 (1, 3, 7, (SELECT catalog_item.productPrice * 7 AS orderCost FROM catalog_item WHERE productIndex = 3));
 
-INSERT INTO item_order (cartID, productIndex, orderQuantity, orderCost) VALUES
-(?, ?, 1, (SELECT catalog_item.productPrice * 1 AS ? FROM catalog_item WHERE productIndex = ?));
+-- INSERT INTO item_order (cartID, productIndex, orderQuantity, orderCost) VALUES
+-- (?, ?, 1, (SELECT catalog_item.productPrice * 1 AS ? FROM catalog_item WHERE productIndex = ?));
