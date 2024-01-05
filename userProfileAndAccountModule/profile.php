@@ -176,15 +176,15 @@
                 $accountRole = $_SESSION["accountRole"];
 
                 if ($accountRole == 1) {    // if the logged in user is an admin, show tabs available only to admin side
-                    echo "<a href='inventoryTrackingModule/storeInventory.php' class='tab'><b>STORE INVENTORY</b></a>";
+                    echo "<a href='../inventoryTrackingModule/storeInventory.php' class='tab'><b>STORE INVENTORY</b></a>";
                     echo "<a href='userProfileAndAccountModule/profile.php' class='active'><b><i class='fa fa-user-circle-o'></i> $username</b></a>";
-                    echo "<a href='userAuthenticationModule/logout.php' class='tabRight'><b>LOGOUT</b></a>";
+                    echo "<a href='../userAuthenticationModule/logout.php' class='tabRight'><b>LOGOUT</b></a>";
                     // add more in the future as and when required
                 }
                 else if ($accountRole == 2) {   // otherwise, just show tabs available to the customer
-                    echo "<a href='shoppingCartModule/#' class='tab'><i class='fa fa-shopping-cart'><b></i> My Cart (# items)</b></a>";
+                    echo "<a href='../shoppingCartModule/addToCart.php' class='tab'><i class='fa fa-shopping-cart'><b></i> My Cart (# items)</b></a>";
                     echo "<a href='userProfileAndAccountModule/profile.php' class='active'><b><i class='fa fa-user-circle-o'></i> $username</b></a>";
-                    echo "<a href='userAuthenticationModule/logout.php' class='tabRight'><b>LOGOUT</b></a>";
+                    echo "<a href='../userAuthenticationModule/logout.php' class='tabRight'><b>LOGOUT</b></a>";
                 }
             }
             else {  // if a session is not active
@@ -202,7 +202,12 @@
                     <div id="category-links">
                         <li style="display: block; text-align: center; padding-bottom: 20px; font-size: 20px;"><b>Menu</b></li>
                         <li><a href="profile.php" class="active">Profile</a></li>
-                        <li><a href="orderHistory.php">Order History</a></li>
+                        <?php
+                            // the customer can see this Order History tab. the admin cannot.
+                            if ($accountRole == 2) {
+                                echo "<li><a href='orderHistory.php'>Order History</a></li>";
+                            }
+                        ?>
                     </div>
                 </ul>
             </div>
@@ -211,13 +216,30 @@
                 <br>
 
                 <table class="profileTable">
+                    <?php
+                        $profileQuery = "SELECT account.username, account.accountEmail, user_profile.accountID, userID, userFullName, userAddress, userContact, userDOB, userProfileImagePath
+                        FROM user_profile
+                        JOIN account ON user_profile.accountID = account.accountID
+                        WHERE user_profile.accountID = '$accountID' LIMIT 1";
+                        $result = mysqli_query($conn, $profileQuery);
+                        $row = mysqli_fetch_assoc($result);
+                    ?>
                     <tr>
-                        <th style="text-align: left; padding-left: 10px;">ID: 00001 | Customer</th>
+                        <th style="text-align: left; padding-left: 10px;">
+                            <?php
+                                if ($accountRole == 1) {
+                                    echo "ID: ".$row["accountID"]." | Admin";
+                                }
+                                else if ($accountRole == 2) {
+                                    echo "ID: ".$row["accountID"]." | Customer";
+                                }
+                            ?>
+                        </th>
                         <th style="text-align: right; padding-right: 10px;"><button class="editButton" onclick="redirect('editProfile.php');">Edit Profile</button></th>
                     </tr>
                     <tr>
                         <td colspan="2" style="text-align: center;">
-                            <img class="circle" src="../images/profilePictures/profile.jpeg" alt="Image">
+                            <img class="circle" src="<?=$row["userProfileImagePath"];?>" alt="Image">
                         </td>
                     </tr>
                     <tr>
@@ -226,27 +248,27 @@
                                 <table class="innerProfileTable">
                                     <tr>
                                         <td><b>Username</b></td>
-                                        <td style="text-align: left;">testCustomer1</td>
+                                        <td style="text-align: left;"><?=$row["username"];?></td>
                                     </tr>
                                     <tr>
                                         <td><b>Full Name</b></td>
-                                        <td style="text-align: left;">Kafuu Chino</td>
+                                        <td style="text-align: left;"><?php echo ($row["userFullName"] != '') ? $row["userFullName"] : "Not filled yet"; ?></td>
                                     </tr>
                                     <tr>
                                         <td><b>Address</b></td>
-                                        <td style="text-align: left;">Osaka, Japan</td>
+                                        <td style="text-align: left;"><?php echo ($row["userAddress"] != '') ? $row["userAddress"] : "Not filled yet"; ?></td>
                                     </tr>
                                     <tr>
                                         <td><b>Email</b></td>
-                                        <td style="text-align: left;">ChinoKa1010@gmail.com</td>
+                                        <td style="text-align: left;"><?=$row["accountEmail"];?></td>
                                     </tr>
                                     <tr>
                                         <td><b>Contact</b></td>
-                                        <td style="text-align: left;">011-111 1111</td>
+                                        <td style="text-align: left;"><?php echo ($row["userContact"] != '') ? $row["userContact"] : "Not filled yet"; ?></td>
                                     </tr>
                                     <tr>
                                         <td><b>Date of Birth</b></td>
-                                        <td style="text-align: left;">11/01/01</td>
+                                        <td style="text-align: left;"><?php echo ($row["userDOB"] != '0000-00-00') ? $row["userDOB"] : "Not filled yet"; ?></td>
                                     </tr>
                                 </table>
                             </div>
@@ -258,37 +280,6 @@
             </div>
         </div>
     </main>
-
-    <!--
-    <main>
-        <div class="textBody">
-            <div class="combined-container">
-                <div class="border-container">
-                    <div class="left-content">
-                        <p>ID</p>
-                    </div>
-                    <div class="right-content">
-                        <a href="index.php"><p>Edit Profile</p></a>
-                    </div>
-                    <div class="border">
-                        <div class="left-content1">
-                            <p>Name</p>
-                        </div>
-                        <div class="right-content1">
-                            <p>Kafuu Chino</p>
-                        </div>
-                        <div class="additional-border">
-                        </div>
-                    </div>
-                </div>
-                <div class="circle">
-                    <-- Add your image source here 
-                    <img src="../images/profilePictures/profile.jpeg" alt="Image">
-                </div>    
-            </div> 
-        </div>
-    </main>
-        -->
 
     <footer>
         <h5>Chiew Cheng Yi | Christopher Wong Sen Li | Carl Brandon Valentine | Danny Mickenzie anak Reda</h5>

@@ -59,8 +59,8 @@
             if (mysqli_query($conn, $pushToAccountQuery)) {  // assuming the account was created successfully, then a new profile row is also created
                 $lastInsertedID = mysqli_insert_id($conn);
 
-                $pushToProfileQuery = "INSERT INTO user_profile (accountID, userFullName, userAddress, userContact, userDOB) VALUES 
-                ('$lastInsertedID', '', '', '', '');";
+                $pushToProfileQuery = "INSERT INTO user_profile (accountID, userFullName, userAddress, userContact, userDOB, userProfileImagePath) VALUES 
+                ('$lastInsertedID', '', '', '', '', '');";
 
                 if (mysqli_query($conn, $pushToProfileQuery)) {
                     $pushToCartQuery = "INSERT INTO cart (userID, totalCost, isActive) VALUES

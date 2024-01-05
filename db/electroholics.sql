@@ -23,6 +23,7 @@ CREATE TABLE IF NOT EXISTS user_profile (
     userAddress varchar(255),
     userContact varchar(255),
     userDOB date,
+    userProfileImagePath varchar(255),
     FOREIGN KEY (accountID) REFERENCES account(accountID) ON DELETE CASCADE
 ) ENGINE=INNODB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
