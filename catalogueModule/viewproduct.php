@@ -200,12 +200,20 @@ header {
                 <h1>Product Name</h1>
                 <p><strong>Product Description</strong></p>
                 <p><strong>Price:</strong> RM XXX.XX</p>
-                <p><strong>Brand:</strong> Product Brand</p>
-                <p><strong>Category:</strong> Product Category</p>
                 <p><strong>Availability:</strong> In Stock</p>
-                <div class="add-to-cart">
-                    <button>Add to Cart</button>
-                </div>
+
+                <?php
+            // Check if the logged-in user is an admin
+            if ($accountRole == 1) {
+                // Replace the Add to Cart button with an Edit button for admins
+                echo '<a href="editProduct.php?id=' . $productID . '" class="editButton"><button>Edit</button></a>';
+            } else {
+                // Display the Add to Cart button for customers
+                echo '<div class="add-to-cart">
+                        <button>Add to Cart</button>
+                    </div>';
+            }
+            ?>
             </div>
         </div>
             

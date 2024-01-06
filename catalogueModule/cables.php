@@ -43,6 +43,21 @@
 </head>
 
 <body>
+    <?php
+        // if $_SESSION["successMessage"] is set from an AddToCart invocation, display this message
+        if (isset($_SESSION["successMessage"])) {
+            $successMessage = $_SESSION["successMessage"];
+            // display the success message
+            echo "
+                <script>
+                    popup(\"$successMessage\", \"\");
+                </script>
+            ";
+            // then unset the variable again. not doing this will make it loop indefinitely
+            unset($_SESSION["successMessage"]);
+        }
+    ?>
+
     <nav class="topnav" id="myTopnav">
         <a href="../index.php" class="tab"><img src="../images/websiteElements/siteElements/electroholicsLogo.png"><b> ELECTROHOLICS </b></a>
         <a href="../index.php" class="tab"><b>HOME</b></a>
@@ -156,8 +171,9 @@
                                     }
                                     else if ($accountRole == 2) {   // if customer is logged in, show add to cart button for the product
                                         // the add to cart button is down here
+                                        $addIndex = $row['productIndex'];
                                         echo '<div class="add-to-cart">';
-                                        echo '<button onclick="addToCart(' . $row['productIndex'] . ')">Add to Cart</button>';
+                                        echo "<button onclick=\"redirect('../shoppingCartModule/addToCart.php?id=$addIndex');\">Add to Cart</button>";
                                         echo '</div>';
                                     }
                                     else {
