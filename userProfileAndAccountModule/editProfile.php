@@ -270,7 +270,7 @@
                             <td colspan="2" style="color: black; text-align: center;">
                                 <input class="pfpToUpload" id="pfpToUpload" name="pfpToUpload" type="file" accept=".jpg, .jpeg, .png" onchange="loadFile(event)"><br>
                                 <br>
-                                <img class="circle" id="output" src="<?=$row["userProfileImagePath"];?>" alt="Image"><br>
+                                <img class="circle" id="output" src="<?=$row["userProfileImagePath"];?>"><br>
                             </td>
                         </tr>
                         <tr>

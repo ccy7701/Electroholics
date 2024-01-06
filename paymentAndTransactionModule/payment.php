@@ -18,16 +18,48 @@
     <script src="../siteJavascript.js"></script>
     <!-- Add any additional CSS for the payment page here, if necessary -->
     <style>
-        .name {
-            padding-left: 5%;
-            padding-right: 5%;
-            text-align: center;
+
+    
+       body {
+            margin: 0;
+            font-family: Arial, sans-serif;
         }
         .checkout-table {
             width: 100%;
-            text-align: center;
+            border-collapse: collapse;
+            background-color: #D9D9D9; /* Light gray background for the table */
         }
-    </style>
+        .checkout-table th {
+            background-color: #FFFFFF; /* Dark blue background for headers */
+            color: black;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .Shipping th {
+            background-color: #FFFFFF; /* Dark blue background for headers */
+            width: 5%;
+            color: black;
+            padding: 10px;
+            text-align: left;
+            align-items:center
+           
+        }
+
+        .checkout-table .title {
+            background-color: #000080; /* Navy blue background for the title cell */
+            color: white;
+            text-align: center;
+            font-size: 24px;
+        }
+        .button {
+        background-color: #008000; /* Suggested: Dark blue background to match the table headers */
+        color: white; /* White text */
+        }
+</style>
+
+</style>
+
 </head>
 <body>
     <!-- Navigation bar from your catalog page -->
@@ -69,8 +101,9 @@
 
             <div class="textBody">
                 <!-- Payment form and details -->
-                <h2 style="text-align: center;">Checkout</h2>
-
+               
+                <br> <br>
+                
                 <div class="name">
                     <form action="submitPayment.php" method="post">
                         <table class="checkout-table">
@@ -89,13 +122,23 @@
                             ?>
                             <!-- Checkout box from your first code -->
                             <tr>
+                                <th class="title" colspan="5">Checkout</th>
+                            </tr>
+                            <tr>
                                 <th>Product Ordered</th>
                                 <th>Unit Price</th>
                                 <th>Quantity</th>
                                 <th>Total Price</th>
                             </tr>
                             <!-- Repeat rows for each product -->
+                            <tr>
+                                <td>Shipping Option</td>
+                                <td>Standard Delivery Received by: 9 Jan</td>
+                                <td><button type="submit" class="button">Change Option</button></td> 
+                                <td>Total Price</td>
+                            </tr>
                         </table>
+                        
                         <!-- End of checkout table -->
 
                         <button type="submit" class="button">Place Order</button>
