@@ -160,9 +160,10 @@
 
                                 if ($row) {
                                     // output the content of each cell
+                                    $viewIndex = $row["productIndex"];
                                     echo "<td>";
                                     echo "<img class='tableImage' src='".$row['productImagePath']."'><br>";
-                                    echo "<p>".$row['productName']."</p>";
+                                    echo "<p class='product'><a href='viewproduct.php?id=$viewIndex' style='color: black; text-decoration: none;'>".$row['productName']."</a></p>";
                                     echo "<p><b>RM".number_format($row['productPrice'], 2)."</b></p>";
 
                                     if ($accountRole == 1) {    // if admin is logged in, show edit button for the product
