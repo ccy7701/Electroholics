@@ -181,7 +181,7 @@
     <nav class="topnav" id="myTopnav">
         <a href="../index.php" class="tab"><img src="../images/websiteElements/siteElements/electroholicsLogo.png"><b> ELECTROHOLICS </b></a>
         <a href="../index.php" class="tab"><b>HOME</b></a>
-        <a href="processors.php" class="active"><b>PRODUCTS</b></a>
+        <a href="../processors.php" class="tab"><b>PRODUCTS</b></a>
         <?php
             if (isset($_SESSION["accountID"])) {    // if a user is logged in and a session is active
                 $accountID = $_SESSION["accountID"];
@@ -196,8 +196,19 @@
                     // add more in the future as and when required
                 }
                 else if ($accountRole == 2) {   // otherwise, just show tabs available to the customer
-                    echo "<a href='../shoppingCartModule/#' class='tab'><i class='fa fa-shopping-cart'><b></i> My Cart (# items)</b></a>";
-                    echo "<a href='../userProfileAndAccountModule/myAccount.php' class='tab'><b><i class='fa fa-user-circle-o'></i> $username</b></a>";
+                    // query for customer's cart
+                    $cartQuery = "
+                        SELECT COUNT(item_order.cartID) AS numberOfCartItems FROM item_order
+                        JOIN cart on item_order.cartID = cart.cartID
+                        JOIN user_profile ON cart.userID = user_profile.userID
+                        WHERE user_profile.accountID = '$accountID' AND cart.isActive = 1;
+                    ";
+                    $result = mysqli_query($conn, $cartQuery);
+                    $row = mysqli_fetch_assoc($result);
+                    $numberOfCartItems = $row["numberOfCartItems"];
+
+                    echo "<a href='../shoppingCartModule/cart.php' class='active'><i class='fa fa-shopping-cart'><b></i> My Cart ($numberOfCartItems items)</b></a>";
+                    echo "<a href='../userProfileAndAccountModule/profile.php' class='tab'><b><i class='fa fa-user-circle-o'></i> $username</b></a>";
                     echo "<a href='../userAuthenticationModule/logout.php' class='tabRight'><b>LOGOUT</b></a>";
                 }
             }
