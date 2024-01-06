@@ -190,8 +190,19 @@
                     // add more in the future as and when required
                 }
                 else if ($accountRole == 2) {   // otherwise, just show tabs available to the customer
-                    echo "<a href='../shoppingCartModule/addToCart.php' class='tab'><i class='fa fa-shopping-cart'><b></i> My Cart (# items)</b></a>";
-                    echo "<a href='userProfileAndAccountModule/profile.php' class='active'><b><i class='fa fa-user-circle-o'></i> $username</b></a>";
+                    // query for customer's cart
+                    $cartQuery = "
+                        SELECT COUNT(item_order.cartID) AS numberOfCartItems FROM item_order
+                        JOIN cart on item_order.cartID = cart.cartID
+                        JOIN user_profile ON cart.userID = user_profile.userID
+                        WHERE user_profile.accountID = '$accountID' AND cart.isActive = 1;
+                    ";
+                    $result = mysqli_query($conn, $cartQuery);
+                    $row = mysqli_fetch_assoc($result);
+                    $numberOfCartItems = $row["numberOfCartItems"];
+
+                    echo "<a href='../shoppingCartModule/cart.php' class='tab'><i class='fa fa-shopping-cart'><b></i> My Cart ($numberOfCartItems items)</b></a>";
+                    echo "<a href='../userProfileAndAccountModule/profile.php' class='tab'><b><i class='fa fa-user-circle-o'></i> $username</b></a>";
                     echo "<a href='../userAuthenticationModule/logout.php' class='tabRight'><b>LOGOUT</b></a>";
                 }
             }

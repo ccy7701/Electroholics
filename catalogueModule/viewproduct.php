@@ -37,94 +37,134 @@
         }
 
         /* Reset some default styles */
-body, h1, h2, p {
-    margin: 0;
-    padding: 0;
-}
+        body, h1, h2, p {
+            margin: 0;
+            padding: 0;
+        }
 
-/* Style the header */
-header {
-    background-color: #333;
-    color: #fff;
-    padding: 10px;
-    text-align: center;
-}
+        /* Style the header */
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
 
-.product-details {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
+        .textBody {
+            background-color: #FFFFFF;
+            color: #000000;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            padding-left: 12%;
+            padding-right: 12%;
+            min-height: 100vh;
+            flex: 2;
+            width: 85%;
+        }
 
-.product-image {
-    flex: 1;
-    padding: 20px;
-    text-align: center;
-}
+        .product-details {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            width: 100%;
+        }
 
-.product-image img {
-    max-width: 100%;
-    height: auto;
-    border: 1px solid #ccc;
-    padding: 10px;
-}
+        .product-image {
+            flex: 1;
+            padding: 20px;
+            text-align: center;
+        }
 
-.product-info {
-    flex: 2;
-    padding: 20px;
-}
+        .product-image img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
 
-.product-info h1 {
-    font-size: 28px;
-    margin-bottom: 10px;
-}
+        .product-info {
+            flex: 2;
+            padding: 20px;
+        }
 
-.product-info p {
-    font-size: 18px;
-    margin-bottom: 10px;
-}
+        .product-info h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
 
-.add-to-cart {
-    text-align: left;
-}
+        .product-info p {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
 
-.add-to-cart button {
-    background-color: #02134F;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    font-size: 22px;
-    cursor: pointer;
-    transition: background-color 0.2s, color 0.2s;
-}
+        .add-to-cart {
+            text-align: left;
+        }
 
-.add-to-cart button:hover {
-    background-color: #d4af37;
-}
+        .add-to-cart button {
+            background-color: #02134F;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 22px;
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s;
+        }
 
-/* Style the product description section */
-.product-description {
-    margin-top: 20px;
-}
+        .add-to-cart button:hover {
+            background-color: #d4af37;
+        }
 
-.product-description h2 {
-    font-size: 20px;
-    margin-bottom: 10px;
-}
+        /* Style the product description section */
+        .product-description {
+            margin-top: 20px;
+        }
 
-.product-description p {
-    font-size: 16px;
-    line-height: 1.5;
-}
+        .product-description h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .product-description p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
         @media screen and (max-width: 600px) {
             .addProductButtonMin button {
                 width: 40%;
+            }
+            .textBody {
+                padding-left: 6%;
+                padding-right: 6%;
+            }
+            .product-details {
+                width: 100%;
+            }
+            .verticalMenu {
+                display: none;
             }
         }
     </style>
 </head>
 
 <body>
+    <?php
+        // if $_SESSION["successMessage"] is set from an AddToCart invocation, display this message
+        if (isset($_SESSION["successMessage"])) {
+            $successMessage = $_SESSION["successMessage"];
+            // display the success message
+            echo "
+                <script>
+                    popup(\"$successMessage\", \"\");
+                </script>
+            ";
+            // then unset the variable again. not doing this will make it loop indefinitely
+            unset($_SESSION["successMessage"]);
+        }
+    ?>
+
     <nav class="topnav" id="myTopnav">
         <a href="../index.php" class="tab"><img src="../images/websiteElements/siteElements/electroholicsLogo.png"><b> ELECTROHOLICS </b></a>
         <a href="../index.php" class="tab"><b>HOME</b></a>
@@ -169,6 +209,18 @@ header {
     </nav>
 
     <main style="flex: 1;">
+        <?php
+            // query for all information on the product first, based on ID passed to this page
+            if (isset($_GET["id"]) && $_GET["id"] != "") {
+                $productIndex = $_GET["id"];
+
+                // get the corresponding product
+                $fetchProductQuery = "SELECT * FROM catalog_item WHERE productIndex = '$productIndex' LIMIT 1";
+                $result = mysqli_query($conn, $fetchProductQuery);
+                $row = mysqli_fetch_assoc($result);
+            }
+        ?>
+
         <div class="row">
             <div class="verticalMenu">
                 <ul>
@@ -180,42 +232,96 @@ header {
                     </li>
                     <br>
                     <div id="category-links">
-                        <li><a href="../catalogueModule/processors.php" class="active">Processors (CPUs)</a></li>
-                        <li><a href="../catalogueModule/motherboards.php">Motherboards</a></li>
-                        <li><a href="../catalogueModule/gpu.php">Graphics Cards (GPUs)</a></li>
-                        <li><a href="../catalogueModule/ram.php">Memory (RAM)</a></li>
-                        <li><a href="../catalogueModule/ssd.php">Storage Drives (SSDs and HDDs)</a></li>
-                        <li><a href="../catalogueModule/psu.php">Power Supplies (PSUs)</a></li>
-                        <li><a href="../catalogueModule/cases.php">Cases and Cooling</a></li>
-                        <li><a href="../catalogueModule/cables.php">Cables and Connectors</a></li>
+                        <?php
+                            // dynamically make the correct product category's link the 'active' class
+                            $currentCategory = $row["productType"];
+                            // if the currentCategory is "cooling", override it and set it to "cases"
+                            if ($currentCategory === "cooling") {
+                                $currentCategory = "cases";
+                            }
+
+                            $categories = array(
+                                "cpu" => array("processors.php", "Processors (CPUs)"),
+                                "motherboards" => array("motherboards.php", "Motherboards"),
+                                "gpu" => array("gpu.php", "Graphics Cards (GPUs)"),
+                                "ram" => array("ram.php", "Memory (RAM)"),
+                                "ssd" => array("ssd.php", "Storage Drives (SSDs and HDDs)"),
+                                "psu" => array("psu.php", "Power Supplies (PSUs)"),
+                                "cases" => array("cases.php", "Cases and Cooling"),
+                                // "cooling" => array("cases.php", "Cases and Cooling"),  [[ ASSUME THAT SINCE "COOLING" REFER TO "CASES" ANYWAY, THAT THIS IS NOT NEEDED ]]
+                                "cables" => array("cables.php", "Cables and Connectors")
+                            );
+
+                            foreach ($categories as $key => $value) {
+                                $link = $value[0];
+                                $label = $value[1];
+
+                                if ($key === $currentCategory) {
+                                    echo "<li>";
+                                    echo "<a href='../catalogueModule/".$link."' class='active'>".$label."</a>";
+                                    echo "</li>";
+                                }
+                                else {
+                                    echo "<li>";
+                                    echo "<a href='../catalogueModule/".$link."'>".$label."</a>";
+                                    echo "</li>";
+                                }
+                            }
+                        ?>
                     </div>
                 </ul>
             </div>
 
-            <div class="product-details">
-            <div class="product-image">
-                <img src="product_image_url" alt="Product Image">
-            </div>
-            <div class="product-info">
-                <h1>Product Name</h1>
-                <p><strong>Product Description</strong></p>
-                <p><strong>Price:</strong> RM XXX.XX</p>
-                <p><strong>Availability:</strong> In Stock</p>
+            <div class="textBody">
+                <br>
+                <a href="javascript:history.back();" style="text-decoration: none; color: #000000; font-size: 18px;">< Back</a>
+                <div class="product-details">
+                    <div class="product-image">
+                        <img src="<?=$row["productImagePath"];?>" alt="Product Image">
+                    </div>
+                    <div class="product-info">
+                        <h1><?=$row["productName"];?></h1>
+                        <p><strong>Description: </strong>
+                            <?php
+                                if ($row["productDescription"] != "") {
+                                    echo $row["productDescription"];
+                                }
+                                else {
+                                    echo "<i>No description has been added yet.</i>";
+                                }
+                            ?>
+                        </p>
+                        <p><strong>Price:</strong> RM <?php echo number_format($row["productPrice"], 2);?></p>
+                        <p>
+                            <strong>Availability:</strong>
+                            <?php
+                                if ($row["productStock"] > 0) {
+                                    echo " In Stock: ".$row["productStock"]." available";
+                                }
+                                else {
+                                    echo " OUT OF STOCK";
+                                }
+                            ?>
+                        </p>
 
-                <?php
-            // Check if the logged-in user is an admin
-            if ($accountRole == 1) {
-                // Replace the Add to Cart button with an Edit button for admins
-                echo '<a href="editProduct.php?id=' . $productID . '" class="editButton"><button>Edit</button></a>';
-            } else {
-                // Display the Add to Cart button for customers
-                echo '<div class="add-to-cart">
-                        <button>Add to Cart</button>
-                    </div>';
-            }
-            ?>
+                        <?php
+                            // Check if the logged-in user is an admin
+                            if ($accountRole == 1) {
+                                // Replace the Add to Cart button with an Edit button for admins
+                                $editIndex = $row['productIndex'];
+                                echo "<button class='editButton' onclick=\"redirect('editProduct.php?id=$editIndex');\">Edit</button>";
+                            } 
+                            else {
+                                // Display the Add to Cart button for customers
+                                $addIndex = $row['productIndex'];
+                                echo '<div class="add-to-cart">';
+                                echo "<button onclick=\"redirect('../shoppingCartModule/addToCart.php?id=$addIndex');\">Add to Cart</button>";
+                                echo '</div>';
+                            }
+                        ?>
+                    </div>
+                </div>
             </div>
-        </div>
             
     </main>
 
