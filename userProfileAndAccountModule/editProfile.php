@@ -118,6 +118,7 @@
         }
 
         .editButton {
+            width: 20%;
             background-color: #6573A3;
             color: #FFF;
             border: none;
@@ -148,6 +149,9 @@
                 width: 70%;
                 padding-left: 5%;
                 padding-right: 5%;
+            }
+            .editButton {
+                width: 40%;
             }
         }
 
@@ -263,7 +267,10 @@
                                     }
                                 ?>
                             </th>
-                            <th style="text-align: right; padding-right: 10px;"><input class="editButton" name="buttonSubmit" type="submit" value="EDIT"></th>
+                            <th style="text-align: right; padding-right: 10px;">
+                                <input class="editButton" name="buttonSubmit" type="submit" value="EDIT">
+                                <input class="editButton" name="buttonCancel" type="button" onclick="history.back();" value="CANCEL">
+                            </th>
                         </tr>
                         <tr>
                             <script type="text/javascript">
