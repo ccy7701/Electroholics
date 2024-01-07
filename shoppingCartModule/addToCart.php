@@ -49,8 +49,12 @@
                 // then, update the totalCost in cart.
                 $updateCartQuery = "
                     UPDATE cart
-                    SET totalCost = '$totalCost' + '$productPrice'
-                    WHERE cartID = '$cartID';
+                    SET totalCost = (
+                        SELECT SUM(item_order.orderCost) AS totalCost
+                        FROM item_order
+                        WHERE item_order.cartID = '$cartID'
+                        )
+                    WHERE cart.cartID = '$cartID' AND cart.isActive = 1;
                 ";
 
                 // if both queries work together
@@ -78,8 +82,12 @@
                 // then, this one updates the totalCost in cart
                 $updateCartQuery = "
                     UPDATE cart
-                    SET totalCost = '$totalCost' + '$productPrice'
-                    WHERE cartID = '$cartID';
+                    SET totalCost = (
+                        SELECT SUM(item_order.orderCost) AS totalCost
+                        FROM item_order
+                        WHERE item_order.cartID = '$cartID'
+                        )
+                    WHERE cart.cartID = '$cartID' AND cart.isActive = 1;
                 ";
 
                 // if both queries work together

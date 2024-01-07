@@ -22,31 +22,41 @@
         document.addEventListener("DOMContentLoaded", function() {
             const cartItems = document.querySelectorAll(".cart-item");
 
-        cartItems.forEach(item => {
-            const quantityInput = item.querySelector(".quantity-input");
-            const plusButton = item.querySelector(".plus");
-            const minusButton = item.querySelector(".minus");
+            cartItems.forEach(item => {
+                const quantityInput = item.querySelector(".quantity-input");
+                const plusButton = item.querySelector(".plus");
+                const minusButton = item.querySelector(".minus");
 
-        plusButton.addEventListener("click", () => {
-            quantityInput.value = parseInt(quantityInput.value) + 1;
-            updateTotalPrice(); // You can define this function to update the total price
-        });
-
-        minusButton.addEventListener("click", () => {
-            const currentValue = parseInt(quantityInput.value);
-            if (currentValue > 1) {
-                quantityInput.value = currentValue - 1;
+            plusButton.addEventListener("click", () => {
+                quantityInput.value = parseInt(quantityInput.value) + 1;
                 updateTotalPrice(); // You can define this function to update the total price
-            }
+            });
+
+            minusButton.addEventListener("click", () => {
+                const currentValue = parseInt(quantityInput.value);
+                if (currentValue > 1) {
+                    quantityInput.value = currentValue - 1;
+                    updateTotalPrice(); // You can define this function to update the total price
+                }
+            });
         });
     });
-
-    // Function to update the total price
-    function updateTotalPrice() {
-        // Calculate and update the total price based on quantity and item prices
-        // You can implement this calculation as per your requirements
-    }
-});
+    </script>
+    <script type="text/javascript">
+        function createPath(target) {
+            let scriptPath = "deleteFromCart.php?id=";
+            let overallPath = scriptPath.concat(target);
+            return overallPath;
+        }
+        function confirmRemoval(targetID) {
+            var promptConfirm = confirm("Are you sure you want the delete this item from cart?");
+            if (promptConfirm) {
+                // if OK is clicked, redirect to deleteFromCart with the targetID
+                var path = createPath(targetID);
+                window.location.href = path;
+            }
+            // do nothing otherwise
+        }
     </script>
     <style>
         body {
@@ -181,7 +191,7 @@
     <nav class="topnav" id="myTopnav">
         <a href="../index.php" class="tab"><img src="../images/websiteElements/siteElements/electroholicsLogo.png"><b> ELECTROHOLICS </b></a>
         <a href="../index.php" class="tab"><b>HOME</b></a>
-        <a href="../processors.php" class="tab"><b>PRODUCTS</b></a>
+        <a href="../catalogueModule/processors.php" class="tab"><b>PRODUCTS</b></a>
         <?php
             if (isset($_SESSION["accountID"])) {    // if a user is logged in and a session is active
                 $accountID = $_SESSION["accountID"];
@@ -224,43 +234,71 @@
     <main>
     <h1>Shopping Cart</h1>
         <section class="cart">
-            <div class="cart-item">
-                <img src="product1.jpg" alt="Product 1">
-                <div class="item-details">
-                    <h2>Product 1</h2>
-                    <p>Price: RM20.00</p>
-                    <p>Quantity: </p>
-                <div class="quantity-controls">
-                    <button class="quantity-button minus">-</button>
-                    <input type="number" class="quantity-input" value="1" disabled>
-                    <button class="quantity-button plus">+</button>
-                </div>
-            </div>
-                <button class="remove-button">Remove</button>
-            </div>
+            <?php
+                // first, get all items in the cart
+                $fetchCartItemsQuery = "
+                    SELECT catalog_item.*,
+                    item_order.orderQuantity, item_order.orderCost,
+                    cart.cartID, cart.totalCost,
+                    user_profile.userID
+                    FROM catalog_item
+                    JOIN item_order ON item_order.productIndex = catalog_item.productIndex
+                    JOIN cart ON cart.cartID = item_order.cartID
+                    JOIN user_profile ON user_profile.userID = cart.userID
+                    WHERE user_profile.accountID = '$accountID' AND cart.isActive = 1;
+                ";
+                $results = mysqli_query($conn, $fetchCartItemsQuery);
+                $numRows = mysqli_num_rows($results);
+                $rowIndex = 1;
 
-            <div class="cart-item">
-                <img src="product2.jpg" alt="Product 2">
-                <div class="item-details">
-                    <h2>Product 2</h2>
-                    <p>Price: RM15.00</p>
-                    <p>Quantity: </p>
-                <div class="quantity-controls">
-                    <button class="quantity-button minus">-</button>
-                    <input type="number" class="quantity-input" value="1" disabled>
-                    <button class="quantity-button plus">+</button>
-                </div>
-                </div>
-                <button class="remove-button">Remove</button>
-            </div>
+                // if the query returns nothing, do the following
+                if ($numRows == 0) {
+                    $totalCost = number_format(0.00, 2);
+                    echo "<div class='cart-item'>";
+                    echo "<h2>No items have been added yet.</h2>";
+                    echo "</div>";
+                }
+                // otherwise, loop through all the rows and populate the page
+                else {
+                    while ($row = mysqli_fetch_assoc($results)) {
+                        $productIndex = $row["productIndex"];
+                        $productID = $row["productID"];
+                        $productType = $row["productType"];
+                        $productName = $row["productName"];
+                        $productPrice = number_format($row["productPrice"], 2);
+                        $productImagePath = $row["productImagePath"];
+                        $orderQuantity = $row["orderQuantity"];
+                        $orderCost = number_format($row["orderCost"], 2);
+                        $totalCost = number_format($row["totalCost"], 2);
+    
+                        echo "<div class='cart-item'>";
+                        echo "<img src='$productImagePath' alt='ProductImage'>";
+                        echo "<div class='item-details'>";
+                        echo "<h2>$productName</h2>";
+                        echo "<p>Price: RM$productPrice</p>";
+                        echo "<div class='quantity-controls'>";
+                        echo "<button class='quantity-button minus'>-</button>";
+                        echo "<input type='number' class='quantity-input' id=quantityAtRow-$rowIndex value='$orderQuantity' disabled>";
+                        echo "<button class='quantity-button plus'>+</button>";
+                        echo "</div>";
+                        echo "</div>";
+                        echo "<button class='remove-button' onclick=\"confirmRemoval('$productIndex')\">Remove</button>";
+                        echo "</div>";
+    
+                        $rowIndex++;
+                    }
+                }
+            ?>
 
             <div class="cart-total">
-                <p>Total: RM55.00</p>
+                <p>Total: RM<?=$totalCost;?></p>
             </div>
             <button class="checkout-button">Checkout</button>
-            
+
         </div>
         </section>
+
+        <br><br>
         
     </main>
 
