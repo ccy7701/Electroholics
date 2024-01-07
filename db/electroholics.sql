@@ -131,5 +131,17 @@ INSERT INTO item_order (cartID, productIndex, orderQuantity, orderCost) VALUES
 (1, 2, 10, (SELECT catalog_item.productPrice * 10 AS orderCost FROM catalog_item WHERE productIndex = 2));
 (1, 3, 7, (SELECT catalog_item.productPrice * 7 AS orderCost FROM catalog_item WHERE productIndex = 3));
 
--- INSERT INTO item_order (cartID, productIndex, orderQuantity, orderCost) VALUES
--- (?, ?, 1, (SELECT catalog_item.productPrice * 1 AS ? FROM catalog_item WHERE productIndex = ?));
+-- Table structure for order_receipt
+
+DROP TABLE IF EXISTS order_receipt;
+CREATE TABLE IF NOT EXISTS order_receipt (
+    orderID int PRIMARY KEY AUTO_INCREMENT,
+    cartID int,
+    paymentAmount double,
+    orderDatetime datetime DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (cartID) REFERENCES cart(cartID)
+) ENGINE=INNODB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Data for order_receipt
+INSERT INTO order_receipt (cartID, paymentAmount) VALUES
+(1, 100.00);

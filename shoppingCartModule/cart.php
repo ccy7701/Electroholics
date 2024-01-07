@@ -124,6 +124,15 @@
             background-color: #CD5C5C;
         }
 
+        .checkout-button-disabled {
+            background-color: #BEBEBE;
+            color: white;
+            border: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            float: right;
+        }
+
         .checkout-button {
             background-color: #00ab41;
             color: white;
@@ -293,8 +302,14 @@
             <div class="cart-total">
                 <p>Total: RM<?=$totalCost;?></p>
             </div>
-            <button class="checkout-button">Checkout</button>
-
+            <?php
+                if ($numRows == 0) {
+                    echo "<button class='checkout-button-disabled' disabled>Checkout</button>";
+                }
+                else {
+                    echo "<button class='checkout-button' onclick=\"redirect('../paymentAndTransactionModule/payment.php')\">Checkout</button>";
+                }
+            ?>
         </div>
         </section>
 

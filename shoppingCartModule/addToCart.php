@@ -7,10 +7,10 @@
 <html lang="en">
 
 <html>
+
+<head>
     <title>Add To Cart Confirmation</title>
     <script src="../siteJavascript.js"></script>
-<head>
-
 </head>
 
 <body>

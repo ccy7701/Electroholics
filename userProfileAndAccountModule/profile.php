@@ -216,7 +216,7 @@
                         <?php
                             // the customer can see this Order History tab. the admin cannot.
                             if ($accountRole == 2) {
-                                echo "<li><a href='orderHistory.php'>Order History</a></li>";
+                                echo "<li><a href='../orderHistoryModule/orderHistory.php'>Order History</a></li>";
                             }
                         ?>
                     </div>
