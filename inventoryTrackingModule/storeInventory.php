@@ -200,13 +200,13 @@
 
                 if ($accountRole == 1) {    // if the logged in user is an admin, show tabs available only to admin side
                     echo "<a href='../inventoryTrackingModule/storeInventory.php' class='active'><b>STORE INVENTORY</b></a>";
-                    echo "<a href='../userProfileAndAccountModule/myAccount.php' class='tab'><b><i class='fa fa-user-circle-o'></i> $username</b></a>";
+                    echo "<a href='../userProfileAndAccountModule/profile.php' class='tab'><b><i class='fa fa-user-circle-o'></i> $username</b></a>";
                     echo "<a href='../userAuthenticationModule/logout.php' class='tabRight'><b>LOGOUT</b></a>";
                     // add more in the future as and when required
                 }
                 else if ($accountRole == 2) {   // otherwise, just show tabs available to the customer
                     echo "<a href='../shoppingCartModule/#' class='tab'><i class='fa fa-shopping-cart'><b></i> My Cart (# items)</b></a>";
-                    echo "<a href='../userProfileAndAccountModule/myAccount.php' class='tab'><b><i class='fa fa-user-circle-o'></i> $username</b></a>";
+                    echo "<a href='../userProfileAndAccountModule/profile.php' class='tab'><b><i class='fa fa-user-circle-o'></i> $username</b></a>";
                     echo "<a href='../userAuthenticationModule/logout.php' class='tabRight'><b>LOGOUT</b></a>";
                 }
             }
@@ -253,7 +253,7 @@
 
                         <!-- loop the following lines -->
                         <?php
-                            if (isset($_SESSION["UID"])) {
+                            if (isset($_SESSION["accountID"])) {
                                 $fetchProductsQuery = "SELECT * FROM catalog_item WHERE productType = 'cpu';";
                                 $result = mysqli_query($conn, $fetchProductsQuery);
                                 // make a new row for every product that is returned from the query
@@ -294,7 +294,7 @@
 
                         <!-- loop the following lines -->
                         <?php
-                            if (isset($_SESSION["UID"])) {
+                            if (isset($_SESSION["accountID"])) {
                                 $fetchProductsQuery = "SELECT * FROM catalog_item WHERE productType = 'motherboards';";
                                 $result = mysqli_query($conn, $fetchProductsQuery);
                                 // make a new row for every product that is returned from the query
@@ -335,7 +335,7 @@
 
                         <!-- loop the following lines -->
                         <?php
-                            if (isset($_SESSION["UID"])) {
+                            if (isset($_SESSION["accountID"])) {
                                 $fetchProductsQuery = "SELECT * FROM catalog_item WHERE productType = 'gpu';";
                                 $result = mysqli_query($conn, $fetchProductsQuery);
                                 // make a new row for every product that is returned from the query
@@ -376,7 +376,7 @@
 
                         <!-- loop the following lines -->
                         <?php
-                            if (isset($_SESSION["UID"])) {
+                            if (isset($_SESSION["accountID"])) {
                                 $fetchProductsQuery = "SELECT * FROM catalog_item WHERE productType = 'ram';";
                                 $result = mysqli_query($conn, $fetchProductsQuery);
                                 // make a new row for every product that is returned from the query
@@ -417,7 +417,7 @@
 
                         <!-- loop the following lines -->
                         <?php
-                            if (isset($_SESSION["UID"])) {
+                            if (isset($_SESSION["accountID"])) {
                                 $fetchProductsQuery = "SELECT * FROM catalog_item WHERE productType = 'ssd';";
                                 $result = mysqli_query($conn, $fetchProductsQuery);
                                 // make a new row for every product that is returned from the query
@@ -458,7 +458,7 @@
 
                         <!-- loop the following lines -->
                         <?php
-                            if (isset($_SESSION["UID"])) {
+                            if (isset($_SESSION["accountID"])) {
                                 $fetchProductsQuery = "SELECT * FROM catalog_item WHERE productType = 'psu';";
                                 $result = mysqli_query($conn, $fetchProductsQuery);
                                 // make a new row for every product that is returned from the query
@@ -499,7 +499,7 @@
 
                         <!-- loop the following lines -->
                         <?php
-                            if (isset($_SESSION["UID"])) {
+                            if (isset($_SESSION["accountID"])) {
                                 $fetchProductsQuery = "SELECT * FROM catalog_item WHERE productType = 'cases';";
                                 $result = mysqli_query($conn, $fetchProductsQuery);
                                 // make a new row for every product that is returned from the query
@@ -540,7 +540,7 @@
 
                         <!-- loop the following lines -->
                         <?php
-                            if (isset($_SESSION["UID"])) {
+                            if (isset($_SESSION["accountID"])) {
                                 $fetchProductsQuery = "SELECT * FROM catalog_item WHERE productType = 'cooling';";
                                 $result = mysqli_query($conn, $fetchProductsQuery);
                                 // make a new row for every product that is returned from the query
@@ -581,7 +581,7 @@
 
                         <!-- loop the following lines -->
                         <?php
-                            if (isset($_SESSION["UID"])) {
+                            if (isset($_SESSION["accountID"])) {
                                 $fetchProductsQuery = "SELECT * FROM catalog_item WHERE productType = 'cables';";
                                 $result = mysqli_query($conn, $fetchProductsQuery);
                                 // make a new row for every product that is returned from the query
