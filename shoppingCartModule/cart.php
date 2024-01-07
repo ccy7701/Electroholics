@@ -277,9 +277,9 @@
                         echo "<h2>$productName</h2>";
                         echo "<p>Price: RM$productPrice</p>";
                         echo "<div class='quantity-controls'>";
-                        echo "<button class='quantity-button minus'>-</button>";
+                        echo "<button class='quantity-button minus' onclick=\"redirect('minusOrderQuantity.php?id=$productIndex')\">-</button>";
                         echo "<input type='number' class='quantity-input' id=quantityAtRow-$rowIndex value='$orderQuantity' disabled>";
-                        echo "<button class='quantity-button plus'>+</button>";
+                        echo "<button class='quantity-button plus' onclick=\"redirect('addOrderQuantity.php?id=$productIndex')\">+</button>";
                         echo "</div>";
                         echo "</div>";
                         echo "<button class='remove-button' onclick=\"confirmRemoval('$productIndex')\">Remove</button>";
