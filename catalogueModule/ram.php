@@ -17,6 +17,26 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="../siteJavascript.js"></script>
+    <script type="text/javascript">
+        // check window width at page load first. hide the menu if width < 600px.
+        window.onload = function() {
+            checkWindowWidth();
+        }
+        function checkWindowWidth() {
+            var x = document.getElementById("categories");
+            var caretIcon = document.getElementById("caret");
+            if (window.innerWidth < 600) {
+                x.style.display = "none";
+                caretIcon.classList.remove('fa-caret-up');
+                caretIcon.classList.add('fa-caret-down');  
+            }
+            else {
+                x.style.display = "block";
+                caretIcon.classList.remove('fa-caret-down');
+                caretIcon.classList.add('fa-caret-up');
+            }
+        }
+    </script>
     <style>
         .addProductButtonMin {
             text-align: center;
@@ -106,22 +126,26 @@
         <div class="row">
             <div class="verticalMenu">
                 <ul>
-                    <li>
-                        <div class="search-wrapper">
-                            <input type="search" id="search" placeholder=" Search " style="width: 80%; height: 40px; font-size: 16px; ">
-                            <i class="fa fa-search"></i>
-                        </div>
-                    </li>
-                    <br>
                     <div id="category-links">
-                        <li><a href="../catalogueModule/processors.php">Processors (CPUs)</a></li>
-                        <li><a href="../catalogueModule/motherboards.php">Motherboards</a></li>
-                        <li><a href="../catalogueModule/gpu.php">Graphics Cards (GPUs)</a></li>
-                        <li><a href="../catalogueModule/ram.php" class="active">Memory (RAM)</a></li>
-                        <li><a href="../catalogueModule/ssd.php">Storage Drives (SSDs and HDDs)</a></li>
-                        <li><a href="../catalogueModule/psu.php">Power Supplies (PSUs)</a></li>
-                        <li><a href="../catalogueModule/cases.php">Cases and Cooling</a></li>
-                        <li><a href="../catalogueModule/cables.php">Cables and Connectors</a></li>
+                        <li>
+                            <div class="search-wrapper">
+                                <input type="search" id="search" placeholder=" Search " style="width: 80%; height: 40px; font-size: 16px; ">
+                                <i class="fa fa-search"></i>
+                            </div>
+                        </li>
+                        <br>
+                        <li><a class="more" href="javascript:void(0);" onClick="adjustCategories();">All Categories&nbsp;&nbsp;<i class="fa fa-caret-down" id="caret"></i></a></li>
+                        <div class="categories" id="categories">
+                            <li><a href="../catalogueModule/processors.php">Processors (CPUs)</a></li>
+                            <li><a href="../catalogueModule/motherboards.php">Motherboards</a></li>
+                            <li><a href="../catalogueModule/gpu.php">Graphics Cards (GPUs)</a></li>
+                            <li><a href="../catalogueModule/ram.php" class="active">Memory (RAM)</a></li>
+                            <li><a href="../catalogueModule/ssd.php">Storage Drives (SSDs and HDDs)</a></li>
+                            <li><a href="../catalogueModule/psu.php">Power Supplies (PSUs)</a></li>
+                            <li><a href="../catalogueModule/cases.php">Cases and Cooling</a></li>
+                            <li><a href="../catalogueModule/cables.php">Cables and Connectors</a></li>
+                        </div>
+                        <br>
                     </div>
                 </ul>
             </div>

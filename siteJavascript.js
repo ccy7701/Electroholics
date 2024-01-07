@@ -11,6 +11,22 @@ function adjustTopnav() {
     }
 }
 
+// function use: to toggle display of the product categories in the catalogueModule product pages
+function adjustCategories() {
+    var x = document.getElementById("categories");
+    var caretIcon = document.getElementById("caret");
+    if (x.style.display === "none" || x.style.display == "") {
+        x.style.display = "block";
+        caretIcon.classList.remove('fa-caret-down');
+        caretIcon.classList.add('fa-caret-up');
+    }
+    else {
+        x.style.display = "none";
+        caretIcon.classList.remove('fa-caret-up');
+        caretIcon.classList.add('fa-caret-down');        
+    }
+}
+
 // function use: to switch between Customer and Admin login forms in login.php
 function setLoginForm(loginType) {
     if (loginType == 1) {   // 1 - admin
