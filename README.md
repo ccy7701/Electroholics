@@ -1,5 +1,5 @@
 <p align=center>
-  <img src="https://github.com/ccy7701/Electroholics/blob/main/electroholicsLogo.png">
+  <img src="https://github.com/ccy7701/Electroholics/blob/main/electroholicsLogo.png" style="height: 128px; height: 128px;">
 </p>
 
 # Electroholics
