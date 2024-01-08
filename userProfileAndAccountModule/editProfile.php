@@ -126,6 +126,7 @@
             font-size: 16px;
             cursor: pointer;
             transition: background-color 0.2s, color 0.2s;
+            text-align: center;
         }
 
         .editButton:hover {
