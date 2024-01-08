@@ -92,7 +92,7 @@
 <head>
 
 <body>
-<nav class="topnav" id="myTopnav">
+    <nav class="topnav" id="myTopnav">
         <a href="../index.php" class="tab"><img src="../images/websiteElements/siteElements/electroholicsLogo.png"><b> ELECTROHOLICS </b></a>
         <a href="../index.php" class="tab"><b>HOME</b></a>
         <a href="processors.php" class="active"><b>PRODUCTS</b></a>

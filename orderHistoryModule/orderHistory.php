@@ -7,7 +7,7 @@
 <html lang="en">
 
 <head>
-    <title>My Profile | Electroholics</title>
+    <title>Order History | Electroholics</title>
     <meta charset="utf8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
@@ -62,8 +62,8 @@
             margin: 0;
             display: flex;
             flex-direction: column;
-            padding-left: 12%;
-            padding-right: 12%;
+            padding-left: 8%;
+            padding-right: 8%;
             min-height: 100vh;
             flex: 2;
             width: 85%;
@@ -94,6 +94,15 @@
             height: 120px;
         }
 
+        .orderHistoryTable td a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .orderHistoryTable a:hover {
+            font-weight: bold;
+        }
+
         @media screen and (max-width: 960px) {
             .verticalMenu {
                 width: 30%;
@@ -118,9 +127,17 @@
                 box-sizing: border-box;
                 width: 100%;
                 min-height: 80vh;
+                padding-left: 4%;
+                padding-right: 4%;
             }
             .orderHistoryTable {
-                font-size: 14px;
+                font-size: 13px;
+                padding-left: 2%;
+                padding-right: 2%;
+            }
+            .orderHistoryTable img {
+                width: 80px;
+                height: 80px;
             }
         }
     </style>
@@ -158,7 +175,7 @@
                     $numberOfCartItems = $row["numberOfCartItems"];
 
                     echo "<a href='../shoppingCartModule/cart.php' class='tab'><i class='fa fa-shopping-cart'><b></i> My Cart ($numberOfCartItems items)</b></a>";
-                    echo "<a href='../userProfileAndAccountModule/profile.php' class='tab'><b><i class='fa fa-user-circle-o'></i> $username</b></a>";
+                    echo "<a href='../userProfileAndAccountModule/profile.php' class='active'><b><i class='fa fa-user-circle-o'></i> $username</b></a>";
                     echo "<a href='../userAuthenticationModule/logout.php' class='tabRight'><b>LOGOUT</b></a>";
                 }
             }
@@ -199,33 +216,70 @@
                         <td colspan="5">&nbsp;</td>
                     </tr>
 
-                    <tr>
-                        <td colspan="2" style="padding-left: 10px; padding-top: 5px;">Order ID: #</td>
-                        <td colspan="3">&nbsp;</td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid #828282;">
-                        <td colspan="2" style="padding-left: 10px; padding-bottom: 5px;">Date: #/#/#</td>
-                        <td colspan="3">&nbsp;</td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid #828282;">
-                        <td><img src="../images/websiteElements/catalogueIMGs/cables/atxcable.png"></td>
-                        <td>Bitfenix Sleeved 45cm Blue/Black 24-pin ATX ext Cable<br>x1</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td style="color: red;"><b>RM{itemCost}</b></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" style="padding-top: 5px; padding-bottom: 5px; padding-left: 10px;"><u>View all SUM(itemCount) products</u></td>
-                        <td>&nbsp;</td>
-                        <td>Order Total:</td>
-                        <td>RM{totalCost}</td>
-                    </tr>
+                    <?php
+                        // get all the orders previously made by this customer's account
+                        // this means, all carts under this customer where isActive = 0
+                        $fetchPastCartsQuery = "
+                            SELECT order_receipt.*, COUNT(*) AS numOfItems,
+                            item_order.productIndex, item_order.orderQuantity, item_order.orderCost, 
+                            catalog_item.productName, catalog_item.productImagePath,
+                            cart.totalCost
+                            FROM order_receipt
+                            JOIN cart ON cart.cartID = order_receipt.cartID
+                            JOIN item_order ON item_order.cartID = cart.cartID
+                            JOIN catalog_item ON item_order.productIndex = catalog_item.productIndex
+                            JOIN user_profile ON cart.userID = user_profile.userID
+                            JOIN account ON account.accountID = user_profile.accountID
+                            WHERE account.accountID = '$accountID'
+                            GROUP BY order_receipt.orderID
+                            ORDER BY order_receipt.orderDatetime DESC;
+                        ";
+                        $results = mysqli_query($conn, $fetchPastCartsQuery);
+                        $numRows = mysqli_num_rows($results);
+                        $rowIndex = 1;
 
-                    <!-- this space is included too -->
-                    <tr style="background-color: #D9D9D9;">
-                        <td colspan="5">&nbsp;</td>
-                    </tr>
+                        while ($row = mysqli_fetch_assoc($results)) {
+                            $orderID = $row["orderID"];
+                            $orderDatetime = $row["orderDatetime"];
+                            $productImagePath = $row["productImagePath"];
+                            $productName = $row["productName"];
+                            $orderQuantity = $row["orderQuantity"];
+                            $orderCost = number_format($row["orderCost"], 2);
+                            $numOfItems = $row["numOfItems"];
+                            $totalCost = number_format($row["totalCost"], 2);
 
+                            // the rows for the orderID and order datetime
+                            echo "<tr>";
+                            echo "<td colspan='2' style='padding-left: 10px; padding-top: 5px;'>Order ID: $orderID</td>";
+                            echo "<td colspan='3'>&nbsp;</td>";
+                            echo "</tr>";
+                            echo "<tr style='border-bottom: 1px solid #828282'>";
+                            echo "<td colspan='2' style='padding-left: 10px; padding-bottom: 5px;'>Date: $orderDatetime";
+                            echo "<td colspan='3'>&nbsp;</td>";
+                            echo "</tr>";
+
+                            // the row with the first product and its details
+                            echo "<tr style='border-bottom: 1px solid #828282;'>";
+                            echo "<td style='text-align: center;'><img src='$productImagePath'></td>";
+                            echo "<td>$productName<br>x$orderQuantity</td>";
+                            echo "<td>&nbsp;</td>";
+                            echo "<td>&nbsp;</td>";
+                            echo "<td style='color: red;'><b>RM$orderCost</b></td>";
+                            echo "</tr>";
+
+                            // the row with the link to view detailed order history
+                            echo "<tr>";
+                            echo "<td colspan='2' style='padding-top: 5px; padding-bottom: 5px; padding-left: 10px;'>";
+                            echo "<a href='orderHistoryDetailed.php?id=$orderID'>View all $numOfItems products</a>";
+                            echo "</td>";
+                            echo "<td>&nbsp;</td>";
+                            echo "<td>Order Total:</td>";
+                            echo "<td style='color: red;'><b>RM$totalCost</b>";
+
+                            // the darker row of empty space
+                            echo "<tr style='background-color: #D9D9D9;'><td colspan='5'>&nbsp;</td></tr>";
+                        }
+                    ?>
                 </table>
 
                 </br>
