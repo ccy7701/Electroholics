@@ -219,6 +219,8 @@
                                 echo "<td style='text-align: center'>RM$orderCost</td>";
                                 echo "</tr>";
                             }
+
+                            mysqli_close($conn);
                         ?>
                         <tr><td colspan="5">&nbsp;</td></tr>
 

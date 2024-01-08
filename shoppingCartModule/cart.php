@@ -298,6 +298,8 @@
                         $rowIndex++;
                     }
                 }
+
+                mysqli_close($conn);
             ?>
 
             <div class="cart-total">

@@ -1,7 +1,12 @@
--- Table structure for account
+-- SQL QUERIES FOR ELECTROHOLICS DATABASE
 
--- INSERT INTO tableName (attributes)
--- VALUES (attributeValues);
+-- CREATE DATABASE electroholics;
+
+-- Database set at config.php: $databaseName = 'electroholics'
+
+START TRANSACTION;
+
+-- Table structure for account
 
 DROP TABLE IF EXISTS account;
 CREATE TABLE IF NOT EXISTS account (
@@ -106,11 +111,6 @@ CREATE TABLE IF NOT EXISTS cart (
     FOREIGN KEY (userID) REFERENCES user_profile(userID) ON DELETE CASCADE
 )   ENGINE=INNODB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Data for cart
-INSERT INTO CART (userID, totalCost, isActive) VALUES
-(1, 0.00, 1),
-(2, 0.00, 1);
-
 -- Table structure for item_order
 
 DROP TABLE IF EXISTS item_order;
@@ -123,14 +123,6 @@ CREATE TABLE IF NOT EXISTS item_order (
     FOREIGN KEY (productIndex) REFERENCES catalog_item(productIndex) ON DELETE CASCADE
 )   ENGINE=INNODB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Data for item_order
--- example: SELECT (catalog_item.productPrice * orderQuantity) AS totalCost FROM catalog_item WHERE productIndex = 1;
--- assume orderQuantity == 5 and assume catalog_item.productPrice = 1 (so it should be 705 * 5 = 3525 if it works correctly)
-INSERT INTO item_order (cartID, productIndex, orderQuantity, orderCost) VALUES
-(1, 1, 5, (SELECT catalog_item.productPrice * 5 AS orderCost FROM catalog_item WHERE productIndex = 1)),
-(1, 2, 10, (SELECT catalog_item.productPrice * 10 AS orderCost FROM catalog_item WHERE productIndex = 2));
-(1, 3, 7, (SELECT catalog_item.productPrice * 7 AS orderCost FROM catalog_item WHERE productIndex = 3));
-
 -- Table structure for order_receipt
 
 DROP TABLE IF EXISTS order_receipt;
@@ -141,7 +133,3 @@ CREATE TABLE IF NOT EXISTS order_receipt (
     orderDatetime datetime DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (cartID) REFERENCES cart(cartID)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- Data for order_receipt
-INSERT INTO order_receipt (cartID, paymentAmount) VALUES
-(1, 100.00);

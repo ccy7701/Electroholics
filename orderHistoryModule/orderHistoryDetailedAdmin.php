@@ -252,6 +252,8 @@
                                     $rowIndex++;
                                 }
                             }
+
+                            mysqli_close($conn);
                         ?>
                         <tr><td colspan="5">&nbsp;</td></tr>
 

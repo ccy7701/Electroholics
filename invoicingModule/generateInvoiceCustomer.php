@@ -124,4 +124,6 @@
     $pdf->Cell(40, 8, number_format($grandTotal, 2), 1, 1, 'R');
 
     $pdf->Output();
+
+    mysqli_close($conn);
 ?>

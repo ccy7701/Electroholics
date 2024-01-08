@@ -282,6 +282,8 @@
                             // the darker row of empty space
                             echo "<tr style='background-color: #D9D9D9;'><td colspan='5'>&nbsp;</td></tr>";
                         }
+
+                        mysqli_close($conn);
                     ?>
                 </table>
 

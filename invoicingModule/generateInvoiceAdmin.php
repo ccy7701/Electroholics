@@ -125,4 +125,6 @@
 
     // set the name of the pdf, if the user so wishes to download it
     $pdf->Output();
+
+    mysqli_close($conn);
 ?>

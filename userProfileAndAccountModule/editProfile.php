@@ -257,6 +257,8 @@
                             $currentContact = $row["userContact"];
                             $currentDOB = $row["userDOB"];
                             $currentProfileImagePath = $row["userProfileImagePath"];
+
+                            mysqli_close($conn);
                         ?>
                         <tr>
                             <th style="text-align: left; padding-left: 10px;">

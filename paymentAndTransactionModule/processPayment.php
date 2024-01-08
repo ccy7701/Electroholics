@@ -85,7 +85,7 @@
             if (mysqli_query($conn, $addOrderReceiptQuery) && mysqli_query($conn, $changeCartStatusQuery) && mysqli_query($conn, $createNewCartQuery)) {
                 echo "
                     <script>
-                        popup(\"Order successful.\", \"../userProfileAndAccountModule/profile.php\");
+                        popup(\"Order successful.\", \"../orderHistoryModule/orderHistory.php\");
                     </script>
                 ";
             }
@@ -97,6 +97,8 @@
                 ";
             }
         }
+
+        mysqli_close($conn);
     ?>
 </body>
 
