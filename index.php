@@ -46,8 +46,8 @@
         }
         .indexTable th {
             background-color: #02134F;
-            padding-top: 5px;
-            padding-bottom: 5px;
+            padding-top: 14px;
+            padding-bottom: 14px;
         }
         .indexTable td {
             background-color: #D9D9D9;
@@ -60,8 +60,13 @@
         .indexTable td:hover {
             background-color: #FAF0E6;
         }
+        .indexTable td a {
+            text-decoration: none;
+            color: black;
+        }
         .tableImage {
-            width: 80%;
+            width: 180px;
+            height: 180px;
         }
         @media screen and (max-width: 600px) {
             .textCenterAligned {
@@ -70,6 +75,10 @@
             .textBody {
                 padding-left: 5%;
                 padding-right: 5%;
+            }
+            .tableImage {
+                width: 90px;
+                height: 90px;
             }
         }
     </style>
@@ -140,68 +149,37 @@
                 <tr>
                     <th colspan=3>Featured Products >></th>
                 </tr>
-                <tr>
-                    <td>
-                        <img class="tableImage" src="images/websiteElements/siteElements/placeholder.png"><br>
-                        Product Name
-                    </td>
-                    <td>
-                        <img class="tableImage" src="images/websiteElements/siteElements/placeholder.png"><br>
-                        Product Name
-                    </td>
-                    <td>
-                        <img class="tableImage" src="images/websiteElements/siteElements/placeholder.png"><br>
-                        Product Name
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img class="tableImage" src="images/websiteElements/siteElements/placeholder.png"><br>
-                        Product Name
-                    </td>
-                    <td>
-                        <img class="tableImage" src="images/websiteElements/siteElements/placeholder.png"><br>
-                        Product Name
-                    </td>
-                    <td>
-                        <img class="tableImage" src="images/websiteElements/siteElements/placeholder.png"><br>
-                        Product Name
-                    </td>
-                </tr>
-            </table>
-            <br>
-            <table class="indexTable" id="tableMostPopularBuilds">
-                <tr>
-                    <th colspan=3>Most Popular Builds >></th>
-                </tr>
-                <tr>
-                    <td>
-                        <img class="tableImage" src="images/websiteElements/siteElements/placeholder.png"><br>
-                        Product Name
-                    </td>
-                    <td>
-                        <img class="tableImage" src="images/websiteElements/siteElements/placeholder.png"><br>
-                        Product Name
-                    </td>
-                    <td>
-                        <img class="tableImage" src="images/websiteElements/siteElements/placeholder.png"><br>
-                        Product Name
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img class="tableImage" src="images/websiteElements/siteElements/placeholder.png"><br>
-                        Product Name
-                    </td>
-                    <td>
-                        <img class="tableImage" src="images/websiteElements/siteElements/placeholder.png"><br>
-                        Product Name
-                    </td>
-                    <td>
-                        <img class="tableImage" src="images/websiteElements/siteElements/placeholder.png"><br>
-                        Product Name
-                    </td>
-                </tr>
+                <?php
+                    $getProductsQuery = "
+                        SELECT *
+                        FROM catalog_item
+                        WHERE productType IN ('cpu', 'motherboards', 'gpu', 'ram', 'ssd', 'psu', 'cases', 'cooling', 'cables')
+                        GROUP BY productType;
+                    ";
+                    $result = mysqli_query($conn, $getProductsQuery);
+                    $numRows = mysqli_num_rows($result);
+                    $tableRowsNeeded = ceil($numRows / 3);
+
+                    for ($i = 0; $i < $tableRowsNeeded; $i++) {
+                        echo "<tr>";
+                        for ($j = 0; $j < 3; $j++) {
+                            $row = mysqli_fetch_assoc($result);
+
+                            if ($row) {
+                                // since the productImagePaths have an "up one level" ../ thing in front, trim that away first
+                                $trimmedProductImagePath = str_replace("../", "", $row["productImagePath"]);
+                                $productName = $row["productName"];
+                                $productIndex = $row["productIndex"];
+                                // output the content of each cell
+                                echo "<td>";
+                                echo "<img class='tableImage' src='$trimmedProductImagePath'><br>";
+                                echo "<a href='catalogueModule/viewProduct.php?id=$productIndex'>$productName</a>";
+                                echo "</td>";
+                            }
+                        }
+                        echo "</tr>";
+                    }
+                ?>
             </table>
             <br>
         </div>
