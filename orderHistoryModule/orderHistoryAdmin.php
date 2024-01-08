@@ -59,7 +59,7 @@
         .orderHistoryTable a:hover {
             font-weight: bold;
         }
-
+        
         @media screen and (max-width: 960px) {
             .textBody {
                 padding-left: 5%;

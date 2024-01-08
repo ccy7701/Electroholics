@@ -72,6 +72,21 @@
         .back-link:hover {
             font-weight: bold;
         }
+        .button {
+            background-color: #008000;
+            color: white;
+            font-size: 16px;
+            padding: 10px 20px;
+            text-align: center;
+            float: right;
+            margin: 10px;
+            transition: 0.1s background-color;
+        }
+        .button:hover {
+            cursor: pointer;
+            background-color: #00AA00;
+        }
+
         @media screen and (max-width: 600px) {
             .orderHistoryTable td {
                 font-size: 14px;
@@ -223,6 +238,7 @@
                                     $orderQuantity = $row["orderQuantity"];
                                     $orderCost = number_format($row["orderCost"], 2);
                                     $totalCost = number_format($row["paymentAmount"], 2);
+                                    $orderID = $row["orderID"];
     
                                     echo "<tr><td colspan='5'>&nbsp;</td></tr>";
                                     echo "<tr class='itemRow'>";
@@ -246,6 +262,7 @@
                         </tr>
                     </table>
                     <a class="back-link" href="javascript:history.back();" style="text-align: left, text-decoration: none; color: white; font-size: 18px;">< Back</a>
+                    <button class="button" onclick="redirect('../invoicingModule/generateInvoiceAdmin.php?id=<?=$orderID;?>');">Generate Invoice</button>
                 </div>
                 <br><br>
             </div>
