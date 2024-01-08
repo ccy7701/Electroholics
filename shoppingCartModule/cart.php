@@ -283,7 +283,7 @@
                         echo "<div class='cart-item'>";
                         echo "<img src='$productImagePath' alt='ProductImage'>";
                         echo "<div class='item-details'>";
-                        echo "<h2>$productName</h2>";
+                        echo "<h2><b>$productID</b><br>$productName</h2>";
                         echo "<p>Price: RM$productPrice</p>";
                         echo "<div class='quantity-controls'>";
                         echo "<button class='quantity-button minus' onclick=\"redirect('minusOrderQuantity.php?id=$productIndex')\">-</button>";

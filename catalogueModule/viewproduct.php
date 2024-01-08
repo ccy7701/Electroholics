@@ -116,6 +116,16 @@
             background-color: #d4af37;
         }
 
+        .back-link {
+            text-decoration: none;
+            color: #000000;
+            font-size: 18px;
+        }
+        
+        .back-link:hover {
+            font-weight: bold;
+        }
+
         /* Style the product description section */
         .product-description {
             margin-top: 20px;
@@ -274,12 +284,13 @@
 
             <div class="textBody">
                 <br>
-                <a href="javascript:history.back();" style="text-decoration: none; color: #000000; font-size: 18px;">< Back</a>
+                <a class="back-link" href="javascript:history.back();">< Back</a>
                 <div class="product-details">
                     <div class="product-image">
                         <img src="<?=$row["productImagePath"];?>" alt="Product Image">
                     </div>
                     <div class="product-info">
+                        <p><strong><?=$row["productID"];?></strong></p>
                         <h1><?=$row["productName"];?></h1>
                         <p><strong>Description: </strong>
                             <?php

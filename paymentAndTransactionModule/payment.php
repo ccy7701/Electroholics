@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="../siteJavascript.js"></script>
     <style>
-       body {
+        body {
             margin: 0;
             font-family: Arial, sans-serif;
         }
@@ -34,7 +34,7 @@
             padding-left: 10px;
             padding-right: 10px;
         }
-
+        
         .shipping  {
             background-color: #FFFFFF; 
             width: 5%;
@@ -53,7 +53,7 @@
         }
 
         .checkout-table .title {
-            background-color: #000080; /* Navy blue background for the title cell */
+            background-color: #02134F; /* Navy blue background for the title cell */
             color: white;
             text-align: center;
             font-size: 24px;
@@ -202,7 +202,6 @@
                             while ($row = mysqli_fetch_assoc($results)) {
                                 $productIndex = $row["productIndex"];
                                 $productID = $row["productID"];
-                                $productType = $row["productType"];
                                 $productName = $row["productName"];
                                 $productPrice = number_format($row["productPrice"], 2);
                                 $productImagePath = $row["productImagePath"];
@@ -213,7 +212,7 @@
                                 echo "<tr><td colspan='5'>&nbsp;</td></tr>";
                                 echo "<tr class='shipping'>";
                                 echo "<td style='width: 10%;'><img src='$productImagePath' style='width: 60px; height: 60px; align-items: center; display: inline-block' alt='ProductImage'></td>";
-                                echo "<td style='width: 50%;'>$productName</td>";
+                                echo "<td style='width: 50%;'><b>$productID</b><br>$productName</td>";
                                 echo "<td style='text-align: center'>$productPrice</td>";
                                 echo "<td style='text-align: center'>$orderQuantity</td>";
                                 echo "<td style='text-align: center'>RM$orderCost</td>";

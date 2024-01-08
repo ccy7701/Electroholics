@@ -222,8 +222,8 @@
                         $fetchPastCartsQuery = "
                             SELECT order_receipt.*, COUNT(*) AS numOfItems,
                             item_order.productIndex, item_order.orderQuantity, item_order.orderCost, 
-                            catalog_item.productName, catalog_item.productImagePath,
-                            cart.totalCost
+                            catalog_item.productName, catalog_item.productID, catalog_item.productImagePath,
+                            cart.totalCost, cart.cartID
                             FROM order_receipt
                             JOIN cart ON cart.cartID = order_receipt.cartID
                             JOIN item_order ON item_order.cartID = cart.cartID
@@ -240,9 +240,11 @@
 
                         while ($row = mysqli_fetch_assoc($results)) {
                             $orderID = $row["orderID"];
+                            $cartID = $row["cartID"];
                             $orderDatetime = $row["orderDatetime"];
                             $productImagePath = $row["productImagePath"];
                             $productName = $row["productName"];
+                            $productID = $row["productID"];
                             $orderQuantity = $row["orderQuantity"];
                             $orderCost = number_format($row["orderCost"], 2);
                             $numOfItems = $row["numOfItems"];
@@ -261,7 +263,7 @@
                             // the row with the first product and its details
                             echo "<tr style='border-bottom: 1px solid #828282;'>";
                             echo "<td style='text-align: center;'><img src='$productImagePath'></td>";
-                            echo "<td>$productName<br>x$orderQuantity</td>";
+                            echo "<td><b>$productID</b><br>$productName<br>x$orderQuantity</td>";
                             echo "<td>&nbsp;</td>";
                             echo "<td>&nbsp;</td>";
                             echo "<td style='color: red;'><b>RM$orderCost</b></td>";
@@ -270,7 +272,7 @@
                             // the row with the link to view detailed order history
                             echo "<tr>";
                             echo "<td colspan='2' style='padding-top: 5px; padding-bottom: 5px; padding-left: 10px;'>";
-                            echo "<a href='orderHistoryDetailed.php?id=$orderID'>View all $numOfItems products</a>";
+                            echo "<a href='orderHistoryDetailed.php?id=$cartID'>View all $numOfItems products in this order</a>";
                             echo "</td>";
                             echo "<td>&nbsp;</td>";
                             echo "<td>Order Total:</td>";
