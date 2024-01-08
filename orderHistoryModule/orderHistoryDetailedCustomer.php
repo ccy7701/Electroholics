@@ -138,11 +138,7 @@
                                 $accountID = $_SESSION["accountID"];
                                 $fetchCartQuery = "
                                     SELECT
-                                    catalog_item.*,
-                                    item_order.orderQuantity, item_order.orderCost,
-                                    order_receipt.orderID, order_receipt.paymentAmount, order_receipt.orderDatetime,
-                                    cart.cartID,
-                                    user_profile.userID
+                                    order_receipt.orderID, order_receipt.orderDatetime
                                     FROM order_receipt
                                     JOIN cart ON order_receipt.cartID = cart.cartID
                                     JOIN item_order ON cart.cartID = item_order.cartID
@@ -152,11 +148,10 @@
                                 ";
                                 $results = mysqli_query($conn, $fetchCartQuery);
                                 $numRows = mysqli_num_rows($results);
-                                $rowIndex = 1;
 
-                                $row_A = mysqli_fetch_assoc($results);
-                                $orderID = $row_A["orderID"];
-                                $orderDatetime = $row_A["orderDatetime"];
+                                $row = mysqli_fetch_assoc($results);
+                                $orderID = $row["orderID"];
+                                $orderDatetime = $row["orderDatetime"];
                             }
                         ?>
                         <tr>
@@ -180,24 +175,48 @@
                             <td>Total Price</td>
                         </tr>
                         <?php
-                            while ($row = mysqli_fetch_assoc($results)) {
-                                $productIndex = $row["productIndex"];
-                                $productID = $row["productID"];
-                                $productName = $row["productName"];
-                                $productPrice = $row["productPrice"];
-                                $productImagePath = $row["productImagePath"];
-                                $orderQuantity = $row["orderQuantity"];
-                                $orderCost = number_format($row["orderCost"], 2);
-                                $totalCost = number_format($row["paymentAmount"], 2);
+                            if (isset($_GET["id"]) && $_GET["id"] != "") {
+                                $id = $_GET["id"];
+                                $accountID = $_SESSION["accountID"];
+                                $fetchCartQuery = "
+                                    SELECT
+                                    catalog_item.*,
+                                    item_order.orderQuantity, item_order.orderCost,
+                                    order_receipt.orderID, order_receipt.paymentAmount, order_receipt.orderDatetime,
+                                    cart.cartID,
+                                    user_profile.userID
+                                    FROM order_receipt
+                                    JOIN cart ON order_receipt.cartID = cart.cartID
+                                    JOIN item_order ON cart.cartID = item_order.cartID
+                                    JOIN catalog_item ON item_order.productIndex = catalog_item.productIndex
+                                    JOIN user_profile ON user_profile.userID = cart.userID
+                                    WHERE user_profile.accountID = '$accountID' AND cart.cartID = '$id';
+                                ";
+                                $results = mysqli_query($conn, $fetchCartQuery);
+                                $numRows = mysqli_num_rows($results);
+                                $rowIndex = 1;
 
-                                echo "<tr><td colspan='5'>&nbsp;</td></tr>";
-                                echo "<tr class='itemRow'>";
-                                echo "<td style='width: 10%;'><img src='$productImagePath' style='width: 60px; height: 60px; align-items: center; display: inline-block' alt='ProductImage'></td>";
-                                echo "<td style='width: 50%;'><b>$productID</b><br>$productName</td>";
-                                echo "<td style='text-align: center'>$productPrice</td>";
-                                echo "<td style='text-align: center'>$orderQuantity</td>";
-                                echo "<td style='text-align: center'>RM$orderCost</td>";
-                                echo "</tr>";
+                                while ($row = mysqli_fetch_assoc($results)) {
+                                    $productIndex = $row["productIndex"];
+                                    $productID = $row["productID"];
+                                    $productName = $row["productName"];
+                                    $productPrice = $row["productPrice"];
+                                    $productImagePath = $row["productImagePath"];
+                                    $orderQuantity = $row["orderQuantity"];
+                                    $orderCost = number_format($row["orderCost"], 2);
+                                    $totalCost = number_format($row["paymentAmount"], 2);
+    
+                                    echo "<tr><td colspan='5'>&nbsp;</td></tr>";
+                                    echo "<tr class='itemRow'>";
+                                    echo "<td style='width: 10%;'><img src='$productImagePath' style='width: 60px; height: 60px; align-items: center; display: inline-block' alt='ProductImage'></td>";
+                                    echo "<td style='width: 50%;'><b>$productID</b><br>$productName</td>";
+                                    echo "<td style='text-align: center'>$productPrice</td>";
+                                    echo "<td style='text-align: center'>$orderQuantity</td>";
+                                    echo "<td style='text-align: center'>RM$orderCost</td>";
+                                    echo "</tr>";
+                                    
+                                    $rowIndex++;
+                                }
                             }
                         ?>
                         <tr><td colspan="5">&nbsp;</td></tr>

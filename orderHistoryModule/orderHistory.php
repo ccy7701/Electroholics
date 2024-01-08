@@ -272,7 +272,7 @@
                             // the row with the link to view detailed order history
                             echo "<tr>";
                             echo "<td colspan='2' style='padding-top: 5px; padding-bottom: 5px; padding-left: 10px;'>";
-                            echo "<a href='orderHistoryDetailed.php?id=$cartID'>View all $numOfItems products in this order</a>";
+                            echo "<a href='orderHistoryDetailedCustomer.php?id=$cartID'>View all $numOfItems products in this order</a>";
                             echo "</td>";
                             echo "<td>&nbsp;</td>";
                             echo "<td>Order Total:</td>";
