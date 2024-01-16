@@ -215,7 +215,7 @@
                                     $productIndex = $row["productIndex"];
                                     $productID = $row["productID"];
                                     $productName = $row["productName"];
-                                    $productPrice = $row["productPrice"];
+                                    $productPrice = number_format($row["productPrice"], 2);
                                     $productImagePath = $row["productImagePath"];
                                     $orderQuantity = $row["orderQuantity"];
                                     $orderCost = number_format($row["orderCost"], 2);
@@ -225,7 +225,7 @@
                                     echo "<tr class='itemRow'>";
                                     echo "<td style='width: 10%;'><img src='$productImagePath' style='width: 60px; height: 60px; align-items: center; display: inline-block' alt='ProductImage'></td>";
                                     echo "<td style='width: 50%;'><b>$productID</b><br>$productName</td>";
-                                    echo "<td style='text-align: center'>$productPrice</td>";
+                                    echo "<td style='text-align: center'>RM$productPrice</td>";
                                     echo "<td style='text-align: center'>$orderQuantity</td>";
                                     echo "<td style='text-align: center'>RM$orderCost</td>";
                                     echo "</tr>";

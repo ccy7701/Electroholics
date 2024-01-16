@@ -259,10 +259,11 @@
                                 $result = mysqli_query($conn, $fetchProductsQuery);
                                 // make a new row for every product that is returned from the query
                                 while ($row = mysqli_fetch_assoc($result)) {
+                                    $productPrice = number_format($row["productPrice"], 2);
                                     echo "<tr class='itemRow'>";
                                     echo "<td class='imageColumn'><img src='".$row["productImagePath"]."'></td>";
                                     echo "<td class='productNameColumn'>".$row["productName"]."</td>";
-                                    echo "<td>".$row["productPrice"]."</td>";
+                                    echo "<td>RM".$productPrice."</td>";
                                     echo "<td>".$row["productStock"]."";
                                     echo "<td><input class='editButtonInv' onclick=\"redirect('editStock.php?id=".$row["productIndex"]."')\" type='button' value='Edit\nStock'></td>";
                                     echo "</tr>";
@@ -300,10 +301,11 @@
                                 $result = mysqli_query($conn, $fetchProductsQuery);
                                 // make a new row for every product that is returned from the query
                                 while ($row = mysqli_fetch_assoc($result)) {
+                                    $productPrice = number_format($row["productPrice"], 2);
                                     echo "<tr class='itemRow'>";
                                     echo "<td class='imageColumn'><img src='".$row["productImagePath"]."'></td>";
                                     echo "<td class='productNameColumn'>".$row["productName"]."</td>";
-                                    echo "<td>".$row["productPrice"]."</td>";
+                                    echo "<td>RM".$productPrice."</td>";
                                     echo "<td>".$row["productStock"]."";
                                     echo "<td><input class='editButtonInv' onclick=\"redirect('editStock.php?id=".$row["productIndex"]."')\" type='button' value='Edit Stock'></td>";
                                     echo "</tr>";
@@ -341,10 +343,11 @@
                                 $result = mysqli_query($conn, $fetchProductsQuery);
                                 // make a new row for every product that is returned from the query
                                 while ($row = mysqli_fetch_assoc($result)) {
+                                    $productPrice = number_format($row["productPrice"], 2);
                                     echo "<tr class='itemRow'>";
                                     echo "<td class='imageColumn'><img src='".$row["productImagePath"]."'></td>";
                                     echo "<td class='productNameColumn'>".$row["productName"]."</td>";
-                                    echo "<td>".$row["productPrice"]."</td>";
+                                    echo "<td>RM".$productPrice."</td>";
                                     echo "<td>".$row["productStock"]."";
                                     echo "<td><input class='editButtonInv' onclick=\"redirect('editStock.php?id=".$row["productIndex"]."')\" type='button' value='Edit Stock'></td>";
                                     echo "</tr>";
@@ -382,10 +385,11 @@
                                 $result = mysqli_query($conn, $fetchProductsQuery);
                                 // make a new row for every product that is returned from the query
                                 while ($row = mysqli_fetch_assoc($result)) {
+                                    $productPrice = number_format($row["productPrice"], 2);
                                     echo "<tr class='itemRow'>";
                                     echo "<td class='imageColumn'><img src='".$row["productImagePath"]."'></td>";
                                     echo "<td class='productNameColumn'>".$row["productName"]."</td>";
-                                    echo "<td>".$row["productPrice"]."</td>";
+                                    echo "<td>RM".$productPrice."</td>";
                                     echo "<td>".$row["productStock"]."";
                                     echo "<td><input class='editButtonInv' onclick=\"redirect('editStock.php?id=".$row["productIndex"]."')\" type='button' value='Edit Stock'></td>";
                                     echo "</tr>";
@@ -423,10 +427,11 @@
                                 $result = mysqli_query($conn, $fetchProductsQuery);
                                 // make a new row for every product that is returned from the query
                                 while ($row = mysqli_fetch_assoc($result)) {
+                                    $productPrice = number_format($row["productPrice"], 2);
                                     echo "<tr class='itemRow'>";
                                     echo "<td class='imageColumn'><img src='".$row["productImagePath"]."'></td>";
                                     echo "<td class='productNameColumn'>".$row["productName"]."</td>";
-                                    echo "<td>".$row["productPrice"]."</td>";
+                                    echo "<td>RM".$productPrice."</td>";
                                     echo "<td>".$row["productStock"]."";
                                     echo "<td><input class='editButtonInv' onclick=\"redirect('editStock.php?id=".$row["productIndex"]."')\" type='button' value='Edit Stock'></td>";
                                     echo "</tr>";
@@ -464,10 +469,11 @@
                                 $result = mysqli_query($conn, $fetchProductsQuery);
                                 // make a new row for every product that is returned from the query
                                 while ($row = mysqli_fetch_assoc($result)) {
+                                    $productPrice = number_format($row["productPrice"], 2);
                                     echo "<tr class='itemRow'>";
                                     echo "<td class='imageColumn'><img src='".$row["productImagePath"]."'></td>";
                                     echo "<td class='productNameColumn'>".$row["productName"]."</td>";
-                                    echo "<td>".$row["productPrice"]."</td>";
+                                    echo "<td>RM".$productPrice."</td>";
                                     echo "<td>".$row["productStock"]."";
                                     echo "<td><input class='editButtonInv' onclick=\"redirect('editStock.php?id=".$row["productIndex"]."')\" type='button' value='Edit Stock'></td>";
                                     echo "</tr>";
@@ -505,10 +511,11 @@
                                 $result = mysqli_query($conn, $fetchProductsQuery);
                                 // make a new row for every product that is returned from the query
                                 while ($row = mysqli_fetch_assoc($result)) {
+                                    $productPrice = number_format($row["productPrice"], 2);
                                     echo "<tr class='itemRow'>";
                                     echo "<td class='imageColumn'><img src='".$row["productImagePath"]."'></td>";
                                     echo "<td class='productNameColumn'>".$row["productName"]."</td>";
-                                    echo "<td>".$row["productPrice"]."</td>";
+                                    echo "<td>RM".$productPrice."</td>";
                                     echo "<td>".$row["productStock"]."";
                                     echo "<td><input class='editButtonInv' onclick=\"redirect('editStock.php?id=".$row["productIndex"]."')\" type='button' value='Edit Stock'></td>";
                                     echo "</tr>";
@@ -546,10 +553,11 @@
                                 $result = mysqli_query($conn, $fetchProductsQuery);
                                 // make a new row for every product that is returned from the query
                                 while ($row = mysqli_fetch_assoc($result)) {
+                                    $productPrice = number_format($row["productPrice"], 2);
                                     echo "<tr class='itemRow'>";
                                     echo "<td class='imageColumn'><img src='".$row["productImagePath"]."'></td>";
                                     echo "<td class='productNameColumn'>".$row["productName"]."</td>";
-                                    echo "<td>".$row["productPrice"]."</td>";
+                                    echo "<td>RM".$productPrice."</td>";
                                     echo "<td>".$row["productStock"]."";
                                     echo "<td><input class='editButtonInv' onclick=\"redirect('editStock.php?id=".$row["productIndex"]."')\" type='button' value='Edit Stock'></td>";
                                     echo "</tr>";
@@ -587,10 +595,11 @@
                                 $result = mysqli_query($conn, $fetchProductsQuery);
                                 // make a new row for every product that is returned from the query
                                 while ($row = mysqli_fetch_assoc($result)) {
+                                    $productPrice = number_format($row["productPrice"], 2);
                                     echo "<tr class='itemRow'>";
                                     echo "<td class='imageColumn'><img src='".$row["productImagePath"]."'></td>";
                                     echo "<td class='productNameColumn'>".$row["productName"]."</td>";
-                                    echo "<td>".$row["productPrice"]."</td>";
+                                    echo "<td>RM".$productPrice."</td>";
                                     echo "<td>".$row["productStock"]."";
                                     echo "<td><input class='editButtonInv' onclick=\"redirect('editStock.php?id=".$row["productIndex"]."')\" type='button' value='Edit Stock'></td>";
                                     echo "</tr>";

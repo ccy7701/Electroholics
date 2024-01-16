@@ -42,8 +42,8 @@ CREATE TABLE IF NOT EXISTS user_profile (
 
 INSERT INTO user_profile (accountID, userFullName, userAddress, userContact, userDOB, userProfileImagePath) VALUES
 (1, 'Customer 1', 'Kota Kinabalu, Sabah', '012-345 6789', '2024-01-01', '../images/profilePictures/anya.jpeg'),
-(2, '', '', '', '', ''),
-(3, '', '', '', '', '');
+(2, 'Customer 2', '', '', '', ''),
+(3, 'Admin 1', '', '', '', '');
 
 -- Table structure for catalog_item
 

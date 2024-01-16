@@ -323,7 +323,7 @@
                                 $editIndex = $row['productIndex'];
                                 echo "<button class='editButton' onclick=\"redirect('editProduct.php?id=$editIndex');\">Edit</button>";
                             } 
-                            else {
+                            else if ($accountRole == 2) {
                                 // Display the Add to Cart button for customers
                                 $addIndex = $row['productIndex'];
                                 echo '<div class="add-to-cart">';
